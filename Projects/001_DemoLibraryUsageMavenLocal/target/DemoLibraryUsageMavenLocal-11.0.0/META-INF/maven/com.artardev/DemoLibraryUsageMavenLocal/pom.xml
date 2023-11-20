@@ -12,10 +12,10 @@
     </parent>
 
     <groupId>com.artardev</groupId>
-    <artifactId>DemoLibraryUsageProjectLocal</artifactId>
+    <artifactId>DemoLibraryUsageMavenLocal</artifactId>
     <version>11.0.0</version>
-    <name>DemoLibraryUsageProjectLocal</name>
-    <description>Demo Project that uses library from Project Local</description>
+    <name>DemoLibraryUsageMavenLocal</name>
+    <description>Demo Project that uses library from Maven Local Repository</description>
 
     <repositories>
 
@@ -32,8 +32,6 @@
             <groupId>com.karandev</groupId>
             <artifactId>com-karandev-util-console</artifactId>
             <version>11.0.0</version>
-            <scope>system</scope>
-            <systemPath>${basedir}/libs/com-karandev-util-console-11.0.0.jar</systemPath>
         </dependency>
     </dependencies>
 
@@ -42,9 +40,6 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-                <configuration>
-                    <includeSystemScope>true</includeSystemScope>
-                </configuration>
             </plugin>
         </plugins>
     </build>

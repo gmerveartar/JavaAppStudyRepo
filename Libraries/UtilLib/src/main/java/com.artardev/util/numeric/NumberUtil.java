@@ -110,6 +110,7 @@ public final class NumberUtil {
 
     public static int factorial(int n)
     {
+        // Calculating Factorial of a number
         int result = 1;
 
         for (int i = 2; i <= n; ++i)
@@ -120,6 +121,7 @@ public final class NumberUtil {
 
     public static int fibonacciNumber(int n)
     {
+        // Find the nth number in a fibonacci series
         if (n <= 2)
             return n - 1;
 

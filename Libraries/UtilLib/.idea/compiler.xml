@@ -6,12 +6,12 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="GenericLib" />
+        <module name="com-artardev-util" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="com-artardev-util" target="17" />
       <module name="GenericApp" target="17" />
+      <module name="GenericLib" target="17" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">

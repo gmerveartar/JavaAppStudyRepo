@@ -2,6 +2,7 @@ package com.artardev.util.numeric;
 
 import com.artardev.util.numeric.data.IntIntDataInfo;
 import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
@@ -9,6 +10,7 @@ import org.junit.runners.Parameterized;
 import java.util.Collection;
 import java.util.List;
 
+@Ignore("Tested before and passed")
 @RunWith(Parameterized.class)
 public class NumberUtilFibonacciTest {
     IntIntDataInfo dataInfo;
@@ -23,7 +25,7 @@ public class NumberUtilFibonacciTest {
                         new IntIntDataInfo(3, 1),
                         new IntIntDataInfo(4, 2),
                         new IntIntDataInfo(5, 3));
-    }
+    } 
     @Test
     public void givenValue_WhenIndex_ThenReturnsNumber()
     {

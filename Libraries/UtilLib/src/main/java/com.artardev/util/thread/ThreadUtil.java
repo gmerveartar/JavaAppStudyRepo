@@ -1,7 +1,7 @@
 /*-------------------------------------------------------------
 	FILE		: ThreadUtil.java
-	AUTHOR		: Java-Mar-2023 Group
-	Last UPDATE	: 14th Oct 2023
+	AUTHOR		: Java-Nov-2023 Group
+	Last UPDATE	: 1st Dec 2023
 
 	Utility class for thread operations
 

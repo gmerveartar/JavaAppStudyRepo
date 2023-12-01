@@ -1,0 +1,5 @@
+com/artardev/util/numeric/NumberUtilIsPrimeTrueTest.class
+com/artardev/util/numeric/data/IntIntDataInfo.class
+com/artardev/util/numeric/NumberUtilIsPrimeFalseTest.class
+com/artardev/util/numeric/data/IntLongDataInfo.class
+com/artardev/util/numeric/NumberUtilFibonacciTest.class

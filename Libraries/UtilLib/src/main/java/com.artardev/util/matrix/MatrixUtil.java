@@ -1,7 +1,7 @@
 /*-------------------------------------------------------------
 	FILE		: MatrixUtil.java
-	AUTHOR		: Java-Mar-2023 Group
-	Last UPDATE	: 29th Oct 2023
+	AUTHOR		: Java-Nov-2023 Group
+	Last UPDATE	: 1st Dec 2023
 
 	Utility class for matrix operations
 
@@ -22,10 +22,10 @@ public final class MatrixUtil {
 
     public static int[][] add(int[][] a, int [][] b)
     {
-        int [][] total = new int[a.length][a[0].length];
+        var total = new int[a.length][a[0].length];
 
-        for (int i = 0; i < a.length; ++i)
-            for (int j = 0; j < a[i].length; ++j)
+        for (var i = 0; i < a.length; ++i)
+            for (var j = 0; j < a[i].length; ++j)
                 total[i][j] = a[i][j] + b[i][j];
 
         return total;
@@ -38,7 +38,7 @@ public final class MatrixUtil {
 
     public static int [][] generateRandomMatrix(RandomGenerator randomGenerator, int row, int col, int min, int bound)
     {
-        int [][] matrix = new int[row][col];
+        var matrix = new int[row][col];
 
         ArrayUtil.fillRandomArray(randomGenerator, matrix, min, bound);
 
@@ -52,9 +52,9 @@ public final class MatrixUtil {
 
     public static boolean isMatrix(int [][] a)
     {
-        int n = a[0].length;
+        var n = a[0].length;
 
-        for (int i = 1; i < a.length; ++i)
+        for (var i = 1; i < a.length; ++i)
             if (a[i].length != n)
                 return false;
 
@@ -73,10 +73,10 @@ public final class MatrixUtil {
 
     public static int[][] subtract(int[][] a, int [][] b)
     {
-        int [][] total = new int[a.length][a[0].length];
+        var total = new int[a.length][a[0].length];
 
-        for (int i = 0; i < a.length; ++i)
-            for (int j = 0; j < a[i].length; ++j)
+        for (var i = 0; i < a.length; ++i)
+            for (var j = 0; j < a[i].length; ++j)
                 total[i][j] = a[i][j] - b[i][j];
 
         return total;
@@ -89,10 +89,10 @@ public final class MatrixUtil {
 
     public static int sum(int [][] a)
     {
-        int total = 0;
+        var total = 0;
 
-        for (int[] rows : a)
-            for (int val : rows)
+        for (var rows : a)
+            for (var val : rows)
                 total += val;
 
         return total;
@@ -100,9 +100,9 @@ public final class MatrixUtil {
 
     public static int sumDiagonal(int [][] a)
     {
-        int total = 0;
+        var total = 0;
 
-        for (int i = 0; i < a.length; ++i)
+        for (var i = 0; i < a.length; ++i)
             total += a[i][i];
 
         return total;
@@ -110,12 +110,12 @@ public final class MatrixUtil {
 
     public static int [][] transposed(int [][] a)
     {
-        int row = a.length;
-        int col = a[0].length;
-        int [][] result = new int[col][row];
+        var row = a.length;
+        var col = a[0].length;
+        var result = new int[col][row];
 
-        for (int i = 0; i < row; ++i)
-            for (int j = 0; j < col; ++j)
+        for (var i = 0; i < row; ++i)
+            for (var j = 0; j < col; ++j)
                 result[j][i] = a[i][j];
 
         return result;

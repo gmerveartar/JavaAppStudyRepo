@@ -1,7 +1,7 @@
 /*-------------------------------------------------------------
 	FILE		: ArrayUtil.java
-	AUTHOR		: Java-Mar-2023 Group
-	Last UPDATE	: 29th Oct 2023
+	AUTHOR		: Java-Nov-2023 Group
+	Last UPDATE	: 1st Dec 2023
 
 	Utility class for array operations
 
@@ -19,16 +19,16 @@ public final class ArrayUtil {
 
     private static void bubbleSortAscending(int [] a)
     {
-        for (int i = 0; i < a.length - 1; ++i)
-            for (int k = 0; k < a.length - 1 - i; ++k)
+        for (var i = 0; i < a.length - 1; ++i)
+            for (var k = 0; k < a.length - 1 - i; ++k)
                 if (a[k + 1] < a[k])
                     swap(a, k, k + 1);
     }
 
     private static void bubbleSortDescending(int [] a)
     {
-        for (int i = 0; i < a.length - 1; ++i)
-            for (int k = 0; k < a.length - 1 - i; ++k)
+        for (var i = 0; i < a.length - 1; ++i)
+            for (var k = 0; k < a.length - 1 - i; ++k)
                 if (a[k] < a[k + 1])
                     swap(a, k, k + 1);
     }
@@ -36,10 +36,10 @@ public final class ArrayUtil {
     private static void selectionSortAscending(int [] a)
     {
         for (int i = 0; i < a.length - 1; ++i) {
-            int min = a[i];
-            int minIndex = i;
+            var min = a[i];
+            var minIndex = i;
 
-            for (int k = i + 1; k < a.length; ++k)
+            for (var k = i + 1; k < a.length; ++k)
                 if (a[k] < min) {
                     min = a[k];
                     minIndex = k;
@@ -52,10 +52,10 @@ public final class ArrayUtil {
     private static void selectionSortDescending(int [] a)
     {
         for (int i = 0; i < a.length - 1; ++i) {
-            int max = a[i];
-            int maxIndex = i;
+            var max = a[i];
+            var maxIndex = i;
 
-            for (int k = i + 1; k < a.length; ++k)
+            for (var k = i + 1; k < a.length; ++k)
                 if (max < a[k]) {
                     max = a[k];
                     maxIndex = k;
@@ -67,13 +67,13 @@ public final class ArrayUtil {
 
     public static void addBy(int [] a, int val)
     {
-        for (int i = 0; i < a.length; ++i)
+        for (var i = 0; i < a.length; ++i)
             a[i] += val;
     }
 
     public static void addBy(int [][] a, int val)
     {
-        for (int [] array : a)
+        for (var array : a)
             addBy(array, val);
     }
 
@@ -92,10 +92,10 @@ public final class ArrayUtil {
 
     public static void drawHistogram(int [] data, int n, char ch)
     {
-        int maxVal = max(data);
+        var maxVal = max(data);
 
-        for (int val : data) {
-            int count = (int)Math.floor(val * n / (double)maxVal);
+        for (var val : data) {
+            var count = (int)Math.floor(val * n / (double)maxVal);
 
             while (count-- > 0)
                 System.out.print(ch);
@@ -106,20 +106,20 @@ public final class ArrayUtil {
 
     public static void fillRandomArray(RandomGenerator randomGenerator, int [][] a, int min, int bound)
     {
-        for (int i = 0; i < a.length; ++i)
-            for (int k = 0; k < a[i].length; ++k)
+        for (var i = 0; i < a.length; ++i)
+            for (var k = 0; k < a[i].length; ++k)
                 a[i][k] = randomGenerator.nextInt(min, bound);
     }
 
     public static void fillRandomArray(RandomGenerator randomGenerator, int [] a, int min, int bound)
     {
-        for (int i = 0; i < a.length; ++i)
+        for (var i = 0; i < a.length; ++i)
             a[i] = randomGenerator.nextInt(min, bound);
     }
 
     public static int [] generateRandomArray(RandomGenerator randomGenerator, int count, int min, int bound)
     {
-        int [] a = new int[count];
+        var a = new int[count];
 
         fillRandomArray(randomGenerator, a, min, bound);
 
@@ -128,9 +128,9 @@ public final class ArrayUtil {
 
     public static int [] histogramData(int [] a, int n)
     {
-        int [] counts = new int[n + 1];
+        var counts = new int[n + 1];
 
-        for (int val : a)
+        for (var val : a)
             ++counts[val];
 
         return counts;
@@ -138,9 +138,9 @@ public final class ArrayUtil {
 
     public static int max(int [] a)
     {
-        int result = a[0];
+        var result = a[0];
 
-        for (int i = 1; i < a.length; ++i)
+        for (var i = 1; i < a.length; ++i)
             result = Math.max(result, a[i]);
 
         return result;
@@ -148,9 +148,9 @@ public final class ArrayUtil {
 
     public static int min(int [] a)
     {
-        int result = a[0];
+        var result = a[0];
 
-        for (int i = 1; i < a.length; ++i)
+        for (var i = 1; i < a.length; ++i)
             result = Math.min(result, a[i]);
 
         return result;
@@ -158,19 +158,19 @@ public final class ArrayUtil {
 
     public static void multiplyBy(int [] a, int val)
     {
-        for (int i = 0; i < a.length; ++i)
+        for (var i = 0; i < a.length; ++i)
             a[i] *= val;
     }
 
     public static void multiplyBy(int [][] a, int val)
     {
-        for (int[] array : a)
+        for (var array : a)
             multiplyBy(array, val);
     }
 
     public static int partitionByThresholdGreater(int [] a, int threshold)
     {
-        int partitionIndex = 0;
+        var partitionIndex = 0;
 
         for (; partitionIndex < a.length && a[partitionIndex] > threshold; ++partitionIndex)
             ;
@@ -178,7 +178,7 @@ public final class ArrayUtil {
         if (partitionIndex == a.length)
             return partitionIndex;
 
-        for (int i = partitionIndex + 1; i < a.length; ++i)
+        for (var i = partitionIndex + 1; i < a.length; ++i)
             if (a[i] < threshold)
                 swap(a, i, partitionIndex++);
 
@@ -187,7 +187,7 @@ public final class ArrayUtil {
 
     public static int partitionByThresholdLess(int [] a, int threshold)
     {
-        int partitionIndex = 0;
+        var partitionIndex = 0;
 
         for (; partitionIndex < a.length && a[partitionIndex] < threshold; ++partitionIndex)
             ;
@@ -195,7 +195,7 @@ public final class ArrayUtil {
         if (partitionIndex == a.length)
             return partitionIndex;
 
-        for (int i = partitionIndex + 1; i < a.length; ++i)
+        for (var i = partitionIndex + 1; i < a.length; ++i)
             if (a[i] < threshold)
                 swap(a, i, partitionIndex++);
 
@@ -204,9 +204,9 @@ public final class ArrayUtil {
 
     public static void print(int n, int [] a)
     {
-        String fmt = String.format("%%0%dd ", n);
+        var fmt = String.format("%%0%dd ", n);
 
-        for (int val : a)
+        for (var val : a)
             System.out.printf(fmt, val);
 
         System.out.println();
@@ -219,7 +219,7 @@ public final class ArrayUtil {
 
     public static void print(int [] a, String sep, String end)
     {
-        for (int val : a)
+        for (var val : a)
             System.out.printf("%d%s", val, sep);
 
         System.out.print(end);
@@ -227,13 +227,13 @@ public final class ArrayUtil {
 
     public static void print(double [] a)
     {
-        for (double val : a)
+        for (var val : a)
             System.out.printf("%f%n", val);
     }
 
     public static void print(long [] a)
     {
-        for (long val : a)
+        for (var val : a)
             System.out.printf("%d%n", val);
     }
 
@@ -244,7 +244,7 @@ public final class ArrayUtil {
 
     public static void print(int n, int [][] a)
     {
-        for (int[] array : a)
+        for (var array : a)
             print(n, array);
     }
 
@@ -255,7 +255,7 @@ public final class ArrayUtil {
 
     public static void print(String [] str, String sep, String end)
     {
-        for (String s : str)
+        for (var s : str)
             System.out.printf("%s%s", s, sep);
 
         System.out.print(end);
@@ -263,8 +263,8 @@ public final class ArrayUtil {
 
     public static void reverse(int [] a)
     {
-        int left = 0;
-        int right = a.length - 1;
+        var left = 0;
+        var right = a.length - 1;
 
         while (left < right)
             swap(a, left++, right--);
@@ -272,8 +272,8 @@ public final class ArrayUtil {
 
     public static void reverse(char [] a)
     {
-        int left = 0;
-        int right = a.length - 1;
+        var left = 0;
+        var right = a.length - 1;
 
         while (left < right)
             swap(a, left++, right--);
@@ -304,9 +304,9 @@ public final class ArrayUtil {
 
     public static int sum(int [] a)
     {
-        int total = 0;
+        var total = 0;
 
-        for (int val : a)
+        for (var val : a)
             total += val;
 
         return total;
@@ -314,7 +314,7 @@ public final class ArrayUtil {
 
     public static void swap(int [] a, int i, int k)
     {
-        int temp = a[i];
+        var temp = a[i];
 
         a[i] = a[k];
         a[k] = temp;
@@ -322,7 +322,7 @@ public final class ArrayUtil {
 
     public static void swap(char [] a, int i, int k)
     {
-        char temp = a[i];
+        var temp = a[i];
 
         a[i] = a[k];
         a[k] = temp;

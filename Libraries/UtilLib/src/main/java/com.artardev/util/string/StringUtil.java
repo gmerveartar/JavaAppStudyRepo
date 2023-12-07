@@ -1,7 +1,7 @@
 /*-------------------------------------------------------------
 	FILE		: StringUtil.java
-	AUTHOR		: Java-Mar-2023 Group
-	Last UPDATE	: 8th Nov 2023
+	AUTHOR		: Java-Nov-2023 Group
+	Last UPDATE	: 1st Dec 2023
 
 	Utility class for string operations
 
@@ -39,11 +39,11 @@ public final class StringUtil {
 
     public static String changeCase(String s)
     {
-        StringBuilder sb = new StringBuilder(s);
-        int len = s.length();
+        var sb = new StringBuilder(s);
+        var len = s.length();
 
-        for (int i = 0; i < len; ++i) {
-            char c = sb.charAt(i);
+        for (var i = 0; i < len; ++i) {
+            var c = sb.charAt(i);
 
             sb.setCharAt(i, Character.isUpperCase(c) ? Character.toLowerCase(c) : Character.toUpperCase(c));
         }
@@ -53,9 +53,9 @@ public final class StringUtil {
 
     public static int countString(String s1, String s2)
     {
-        int count = 0;
+        var count = 0;
 
-        for (int index = 0; (index = s1.indexOf(s2, index)) != -1; ++index, ++count)
+        for (var index = 0; (index = s1.indexOf(s2, index)) != -1; ++index, ++count)
             ;
 
         return count;
@@ -68,10 +68,10 @@ public final class StringUtil {
 
     public static String generateRandomText(RandomGenerator randomGenerator, int count, String sourceText)
     {
-        StringBuilder sb = new StringBuilder(count);
-        int sourceTextLen = sourceText.length();
+        var sb = new StringBuilder(count);
+        var sourceTextLen = sourceText.length();
 
-        for (int i = 0; i < count; ++i)
+        for (var i = 0; i < count; ++i)
             sb.append(sourceText.charAt(randomGenerator.nextInt(sourceTextLen)));
 
         return sb.toString();
@@ -89,9 +89,9 @@ public final class StringUtil {
 
     public static String [] generateRandomTexts(RandomGenerator randomGenerator, int count, int min, int bound, String sourceText)
     {
-        String [] str = new String[count];
+        var str = new String[count];
 
-        for (int i = 0; i < count; ++i)
+        for (var i = 0; i < count; ++i)
             str[i] = generateRandomText(randomGenerator, randomGenerator.nextInt(min, bound), sourceText);
 
         return str;
@@ -109,15 +109,15 @@ public final class StringUtil {
 
     public static String getFirstLongestPalindrome(String s)
     {
-        String result = "";
+        var result = "";
 
-        int begin = 0;
+        var begin = 0;
 
         while (begin != s.length()) {
-            int end = s.length();
+            var end = s.length();
 
             while (begin != end) {
-                String str = s.substring(begin, end--);
+                var str = s.substring(begin, end--);
 
                 if (str.length() >= 2 && isPalindrome(str) && result.length() < str.length())
                     result = str;
@@ -130,15 +130,15 @@ public final class StringUtil {
 
     public static String getLastLongestPalindrome(String s)
     {
-        String result = "";
+        var result = "";
 
-        int end = s.length();
+        var end = s.length();
 
         while (end != 0) {
-            int begin = 0;
+            var begin = 0;
 
             while (begin != end) {
-                String str = s.substring(begin++, end);
+                var str = s.substring(begin++, end);
 
                 if (str.length() >= 2 && isPalindrome(str) && result.length() < str.length())
                     result = str;
@@ -151,15 +151,15 @@ public final class StringUtil {
 
     public static String getFirstShortestPalindrome(String s)
     {
-        String result = s;
+        var result = s;
 
-        int begin = 0;
+        var begin = 0;
 
         while (begin != s.length()) {
-            int end = s.length();
+            var end = s.length();
 
             while (begin != end) {
-                String str = s.substring(begin, end--);
+                var str = s.substring(begin, end--);
 
                 if (str.length() >= 2 && isPalindrome(str) && str.length() < result.length())
                     result = str;
@@ -173,15 +173,15 @@ public final class StringUtil {
 
     public static String getLastShortestPalindrome(String s)
     {
-        String result = s;
+        var result = s;
 
-        int end = s.length();
+        var end = s.length();
 
         while (end != 0) {
-            int begin = 0;
+            var begin = 0;
 
             while (begin != end) {
-                String str = s.substring(begin++, end);
+                var str = s.substring(begin++, end);
 
                 if (str.length() >= 2 && isPalindrome(str) && str.length() < result.length())
                     result = str;
@@ -195,15 +195,15 @@ public final class StringUtil {
 
     public static String getFirstPangramTR(String s)
     {
-        String result = s;
+        var result = s;
 
-        int begin = 0;
+        var begin = 0;
 
         while (begin != s.length()) {
-            int end = s.length();
+            var end = s.length();
 
             while (begin != end) {
-                String str = s.substring(begin, end--);
+                var str = s.substring(begin, end--);
 
                 if (str.length() >= 29 && isPangramTR(str) && str.length() < result.length())
                     result = str;
@@ -216,15 +216,15 @@ public final class StringUtil {
 
     public static String getLastPangramTR(String s)
     {
-        String result = s;
+        var result = s;
 
-        int end = s.length();
+        var end = s.length();
 
         while (end != 0) {
-            int begin = 0;
+            var begin = 0;
 
             while (begin != end) {
-                String str = s.substring(begin++, end);
+                var str = s.substring(begin++, end);
 
                 if (str.length() >= 29 && isPangramTR(str) && str.length() < result.length())
                     result = str;
@@ -237,15 +237,15 @@ public final class StringUtil {
 
     public static String getFirstPangramEN(String s)
     {
-        String result = s;
+        var result = s;
 
-        int begin = 0;
+        var begin = 0;
 
         while (begin != s.length()) {
-            int end = s.length();
+            var end = s.length();
 
             while (begin != end) {
-                String str = s.substring(begin, end--);
+                var str = s.substring(begin, end--);
 
                 if (str.length() >= 26 && isPangramEN(str) && str.length() < result.length())
                     result = str;
@@ -258,15 +258,15 @@ public final class StringUtil {
 
     public static String getLastPangramEN(String s)
     {
-        String result = s;
+        var result = s;
 
-        int end = s.length();
+        var end = s.length();
 
         while (end != 0) {
-            int begin = 0;
+            var begin = 0;
 
             while (begin != end) {
-                String str = s.substring(begin++, end);
+                var str = s.substring(begin++, end);
 
                 if (str.length() >= 26 && isPangramEN(str) && str.length() < result.length())
                     result = str;
@@ -283,17 +283,18 @@ public final class StringUtil {
         if (s1.length() != s2.length())
             return false;
 
-        int count1 = 0, count2 = 0;
-        int len = s1.length();
+        var count1 = 0;
+        var count2 = 0;
+        var len = s1.length();
 
-        for (int i = 0; i < len; ++i) {
+        for (var i = 0; i < len; ++i) {
             if (s2.indexOf(s1.charAt(i)) == -1)
                 return false;
 
             ++count1;
         }
 
-        for (int i = 0; i < len; ++i) {
+        for (var i = 0; i < len; ++i) {
             if (s1.indexOf(s2.charAt(i)) == -1)
                 return false;
 
@@ -311,9 +312,9 @@ public final class StringUtil {
         if (!Character.isJavaIdentifierStart(s.charAt(0)))
             return false;
 
-        int len = s.length();
+        var len = s.length();
 
-        for (int i = 1; i < len; ++i)
+        for (var i = 1; i < len; ++i)
             if (!Character.isJavaIdentifierPart(s.charAt(i)))
                 return false;
 
@@ -322,19 +323,19 @@ public final class StringUtil {
 
     public static boolean isPalindrome(String s)
     {
-        int left = 0;
-        int right = s.length() - 1;
-        boolean result = true;
+        var left = 0;
+        var right = s.length() - 1;
+        var result = true;
 
         while (left < right) {
-            char cLeft = Character.toLowerCase(s.charAt(left));
+            var cLeft = Character.toLowerCase(s.charAt(left));
 
             if (!Character.isLetter(cLeft)) {
                 ++left;
                 continue;
             }
 
-            char cRight = Character.toLowerCase(s.charAt(right));
+            var cRight = Character.toLowerCase(s.charAt(right));
 
             if (!Character.isLetter(cRight)) {
                 --right;
@@ -355,10 +356,10 @@ public final class StringUtil {
 
     public static boolean isPangram(String s, String alphabet)
     {
-        int len = alphabet.length();
+        var len = alphabet.length();
 
-        for (int i = 0; i < len; ++i) {
-            char c = alphabet.charAt(i);
+        for (var i = 0; i < len; ++i) {
+            var c = alphabet.charAt(i);
 
             if (s.indexOf(c) == -1)
                 return false;
@@ -384,9 +385,9 @@ public final class StringUtil {
 
     public static String join(String [] str, String separator)
     {
-        StringBuilder sb = new StringBuilder();
+        var sb = new StringBuilder();
 
-        for (String s : str)
+        for (var s : str)
             sb.append(s).append(separator);
 
         return sb.substring(0, sb.length() - separator.length());
@@ -394,9 +395,9 @@ public final class StringUtil {
 
     public static String join(ArrayList<String> list, String separator)
     {
-        StringBuilder sb = new StringBuilder();
+        var sb = new StringBuilder();
 
-        for (String s : list)
+        for (var s : list)
             sb.append(s).append(separator);
 
         return sb.substring(0, sb.length() - separator.length());
@@ -409,7 +410,7 @@ public final class StringUtil {
 
     public static String padLeading(String s, int len, char ch)
     {
-        int length = s.length();
+        var length = s.length();
 
         return len <= length ? s : (ch + "").repeat(len - length) + s;
     }
@@ -421,7 +422,7 @@ public final class StringUtil {
 
     public static String padTrailing(String s,  int len, char ch)
     {
-        int length = s.length();
+        var length = s.length();
 
         return len <= length ? s : s + (ch + "").repeat(len - length);
     }
@@ -443,10 +444,10 @@ public final class StringUtil {
 
     public static String [] split(String s, String separators, boolean removeEmpties)
     {
-        StringBuilder regexBuilder = new StringBuilder("[");
+        var regexBuilder = new StringBuilder("[");
 
-        for (int i = 0; i < separators.length(); ++i) {
-            char c = separators.charAt(i);
+        for (var i = 0; i < separators.length(); ++i) {
+            var c = separators.charAt(i);
 
             if (c == ']' || c == '[')
                 regexBuilder.append('\\');
@@ -464,11 +465,11 @@ public final class StringUtil {
 
     public static String squeeze(String s1, String s2)
     {
-        StringBuilder sb = new StringBuilder();
-        int len = s1.length();
+        var sb = new StringBuilder();
+        var len = s1.length();
 
-        for (int i = 0; i < len; ++i) {
-            char c = s1.charAt(i);
+        for (var i = 0; i < len; ++i) {
+            var c = s1.charAt(i);
 
             if (!s2.contains(String.valueOf(c)))
                 sb.append(c);
@@ -480,7 +481,7 @@ public final class StringUtil {
     public static String trimLeading(String s)
     {
         int i;
-        int len = s.length();
+        var len = s.length();
 
         for (i = 0; i < len && Character.isWhitespace(s.charAt(i)); ++i)
             ;

@@ -24,6 +24,7 @@ public final class Console {
     private Console() {}
 
     public static final class Error {
+        // This class is to manage error handling.
         private Error() {}
 
         public static void write(boolean b)

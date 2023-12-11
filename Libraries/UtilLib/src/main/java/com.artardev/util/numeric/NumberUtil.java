@@ -1,7 +1,7 @@
 /*-------------------------------------------------------------
 	FILE		: NumberUtil.java
 	AUTHOR		: Java-Nov-2023 Group
-	Last UPDATE	: 1st Dec  2023
+	Last UPDATE	: 8th Dec  2023
 	
 	Utility class for numeric operations
 	
@@ -10,11 +10,18 @@
 -------------------------------------------------------------*/
 package com.artardev.util.numeric;
 
+import java.math.BigInteger;
+
 import static java.lang.Math.*;
 
 public final class NumberUtil {
     private static final String [] ONES;
     private static final String [] TENS;
+    private static final BigInteger THREE = BigInteger.valueOf(3);
+    private static final BigInteger FIVE = BigInteger.valueOf(5);
+    private static final BigInteger SEVEN = BigInteger.valueOf(7);
+    private static final BigInteger NINE = BigInteger.valueOf(9);
+    private static final BigInteger ELEVEN = BigInteger.valueOf(11);
 
     static {
         ONES = new String[]{"", "bir", "iki", "üç", "dört", "beş", "altı", "yedi", "sekiz", "dokuz"};
@@ -117,6 +124,16 @@ public final class NumberUtil {
 
         return result;
     }
+    public static BigInteger factorialBigInteger(int n)
+    {
+        var result = BigInteger.ONE;
+        var bound = BigInteger.valueOf(n);
+
+        for (var i = BigInteger.TWO; i.compareTo(bound) <= 0; i = i.add(BigInteger.ONE))
+            result = result.multiply(i);
+
+        return result;
+    }
 
     public static int fibonacciNumber(int n)
     {
@@ -167,6 +184,20 @@ public final class NumberUtil {
         return val;
     }
 
+    public static BigInteger getPrime(BigInteger n) //not tested yet
+    {
+        var count = BigInteger.ZERO;
+        var val = BigInteger.TWO;
+
+        while (true) {
+            if (isPrime(val))
+                count = count.add(BigInteger.ONE);
+            if (count == n)
+                break;
+            val = val.add(BigInteger.ONE);
+        }
+        return val;
+    }
     public static int hardyRamanujanCount(int n)
     {
         int count = 0;
@@ -197,6 +228,20 @@ public final class NumberUtil {
                 ++i;
 
             ++a;
+        }
+    }
+    public static int indexOfPrime(BigInteger val)  // not tested yet
+    {
+        var i = 1;
+        var a = BigInteger.TWO;
+
+        while (true) {
+            if (a.equals(val))
+                return i;
+
+            if (isPrime(a))
+                ++i;
+            a = a.add(BigInteger.ONE);
         }
     }
 
@@ -248,7 +293,29 @@ public final class NumberUtil {
 
         return true;
     }
+    public static boolean isPrime(BigInteger val)
+    {
+        if (val.compareTo(BigInteger.ONE) <= 0)
+            return false;
 
+        if (val.remainder(BigInteger.TWO).equals(BigInteger.ZERO))
+            return val.equals(BigInteger.TWO);
+
+        if (val.remainder(THREE).equals(BigInteger.ZERO))
+            return val.equals(THREE);
+
+        if (val.remainder(FIVE).equals(BigInteger.ZERO))
+            return val.equals(FIVE);
+
+        if (val.remainder(SEVEN).equals(BigInteger.ZERO))
+            return val.equals(SEVEN);
+
+        for (var i = ELEVEN; i.multiply(i).compareTo(val) <= 0; i = i.add(BigInteger.TWO))
+            if (val.remainder(i).equals(BigInteger.ZERO))
+                return false;
+
+        return true;
+    }
     public static boolean isPrimeX(long val)
     {
         boolean result;
@@ -259,9 +326,23 @@ public final class NumberUtil {
         return result;
     }
 
+    public static boolean isPrimeX(BigInteger val) //not tested yet
+    {
+       boolean result;
+
+       for (var sum = val; (result = isPrime(sum)) && sum.compareTo(NINE) > 0; sum = sumDigits(sum))
+           ;
+
+       return result;
+    }
     public static boolean isSuperPrime(long val)
     {
         return isPrime(val) && isPrime(indexOfPrime(val));
+    }
+
+    public static boolean isSuperPrime(BigInteger val)  //not tested yet
+    {
+       return isPrime(val) && isSuperPrime(indexOfPrime(val));
     }
 
     public static int mid(int a, int b, int c)
@@ -270,6 +351,17 @@ public final class NumberUtil {
             return b;
 
         if (b <= a && a <= c || c <= a && a <= b)
+            return a;
+
+        return c;
+    }
+
+    public static BigInteger mid(BigInteger a, BigInteger b,BigInteger c)
+    {
+        if ( a.compareTo(b) <= 0 && b.compareTo(c) <= 0 || c.compareTo(b) <= 0 && b.compareTo(a) <= 0)
+            return b;
+
+        if ( b.compareTo(a) <= 0 && a.compareTo(c) <= 0 || c.compareTo(a) <= 0 && a.compareTo(b) <= 0)
             return a;
 
         return c;
@@ -346,6 +438,18 @@ public final class NumberUtil {
         return result;
     }
 
+    public static BigInteger reverse(BigInteger val)
+    {
+        var result = BigInteger.ZERO;
+
+        while (!val.equals(BigInteger.ZERO)) {
+            result = result.multiply(BigInteger.TEN).add(val.remainder(BigInteger.TEN));
+            val = val.divide(BigInteger.TEN);
+        }
+
+        return result;
+    }
+
     public static int sumDigits(long val)
     {
         var total = 0;
@@ -356,6 +460,18 @@ public final class NumberUtil {
         }
 
         return abs(total);
+    }
+
+    public static BigInteger sumDigits(BigInteger val)
+    {
+        var total = BigInteger.ZERO;
+        while (!val.equals(BigInteger.ZERO)) {
+            total = total.add(val.remainder(BigInteger.TEN));
+            val = val.divide(BigInteger.TEN);
+        }
+
+        return total.abs();
+
     }
 
     public static int sumFactors(long val)

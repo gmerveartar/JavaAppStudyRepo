@@ -11,14 +11,14 @@ import java.util.List;
 
 @Ignore("Tested before and passed")
 @RunWith(Parameterized.class)
-public class NumberUtilPrimeTrueTest {
+public class NumberUtilIsPrimeTrueTest {
     public long input;
     @Parameterized.Parameters
     public static Collection<Long> createData()
     {
         return List.of(710_584_055_392_819_667L, 1_386_437_196_678_024_971L, 19L, 71L);
     }
-    public NumberUtilPrimeTrueTest(long input) {
+    public NumberUtilIsPrimeTrueTest(long input) {
         this.input = input;
     }
     @Test

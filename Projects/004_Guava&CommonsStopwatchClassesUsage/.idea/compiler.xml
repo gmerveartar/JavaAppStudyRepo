@@ -6,11 +6,12 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="DemoLibraryUsageMavenRemoteRepo" />
+        <module name="GuavaCommonsStopwatchClassesUsage" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="DemoLibraryUsageMavenLocal" target="17" />
+      <module name="DemoLibraryUsageMavenRemoteRepo" target="17" />
       <module name="DemoLibraryUsageProjectLocal" target="17" />
       <module name="GenericApp" target="17" />
     </bytecodeTargetLevel>
@@ -21,6 +22,7 @@
       <module name="DemoLibraryUsageMavenRemoteRepo" options="-parameters" />
       <module name="DemoLibraryUsageProjectLocal" options="-parameters" />
       <module name="GenericApp" options="-parameters" />
+      <module name="GuavaCommonsStopwatchClassesUsage" options="-parameters" />
     </option>
   </component>
 </project>

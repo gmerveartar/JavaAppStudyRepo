@@ -11,21 +11,16 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
-    <groupId>com.artardev</groupId>
+    <groupId>org.csystem</groupId>
     <artifactId>GenericApp</artifactId>
-    <version>14.0.0</version>
+    <version>11.0.0</version>
     <name>GenericApp</name>
     <description>Generic Application Provider</description>
 
     <repositories>
         <repository>
-            <id>javaapp1-mar-2023-maven-repo</id>
-            <url>https://raw.github.com/oguzkaran/javaapp1-mar-2023-maven-repo/main</url>
-        </repository>
-
-        <repository>
-            <id>javaapp1-mar-2023-karandev-maven-repo</id>
-            <url>https://raw.github.com/oguzkaran/javaapp1-mar-2023-karandev-maven-repo/main</url>
+            <id>DemoMavenRepo</id>
+            <url>https://raw.github.com/gmerveartar/DemoMavenRepo/main</url>
         </repository>
     </repositories>
 
@@ -39,7 +34,7 @@
         <dependency>
             <groupId>com.karandev</groupId>
             <artifactId>com-karandev-util-console</artifactId>
-            <version>14.0.0</version>
+            <version>11.0.0</version>
         </dependency>
     </dependencies>
 

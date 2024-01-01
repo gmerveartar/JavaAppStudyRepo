@@ -124,6 +124,8 @@ public final class NumberUtil {
 
         return result;
     }
+
+
     public static BigInteger factorialBigInteger(int n)
     {
         var result = BigInteger.ONE;

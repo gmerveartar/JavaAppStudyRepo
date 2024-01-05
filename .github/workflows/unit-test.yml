@@ -1,11 +1,11 @@
 name: Pull Request Tests
 on:
   pull_request:
-  branches:
-    - development
-    - main
-    - integration
-    - unit-test
+    branches:
+      - development
+      - main
+      - integration
+      - unit-test
 
 jobs:
   tests:

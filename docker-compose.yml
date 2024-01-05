@@ -1,0 +1,6 @@
+services:
+  merve-unit-test:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+      image: unit-test-docker

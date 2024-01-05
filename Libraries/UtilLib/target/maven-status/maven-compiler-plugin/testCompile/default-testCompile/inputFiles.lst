@@ -1,4 +1,5 @@
 /Users/merveartar/Desktop/JavaAppStudyRepo/Libraries/UtilLib/src/test/java/org/csystem/util/numeric/NumberUtilCountDigitsTest.java
+/Users/merveartar/Desktop/JavaAppStudyRepo/Libraries/UtilLib/src/test/java/org/csystem/util/numeric/NumberUtilSumFactorsBigIntegerTest.java
 /Users/merveartar/Desktop/JavaAppStudyRepo/Libraries/UtilLib/src/test/java/org/csystem/util/numeric/NumberUtilFibonacciTest.java
 /Users/merveartar/Desktop/JavaAppStudyRepo/Libraries/UtilLib/src/test/java/org/csystem/util/numeric/data/IntLongDataInfo.java
 /Users/merveartar/Desktop/JavaAppStudyRepo/Libraries/UtilLib/src/test/java/org/csystem/util/numeric/NumberUtilMidBigIntegerTest.java
@@ -8,8 +9,11 @@
 /Users/merveartar/Desktop/JavaAppStudyRepo/Libraries/UtilLib/src/test/java/org/csystem/util/numeric/NumberUtilFactorialTest.java
 /Users/merveartar/Desktop/JavaAppStudyRepo/Libraries/UtilLib/src/test/java/org/csystem/util/numeric/NumberUtilIsPrimeFalseTest.java
 /Users/merveartar/Desktop/JavaAppStudyRepo/Libraries/UtilLib/src/test/java/org/csystem/util/numeric/NumberUtilAreFriendsTest.java
+/Users/merveartar/Desktop/JavaAppStudyRepo/Libraries/UtilLib/src/test/java/org/csystem/util/numeric/NumberUtilGetPrimeBigIntegerTest.java
 /Users/merveartar/Desktop/JavaAppStudyRepo/Libraries/UtilLib/src/test/java/org/csystem/util/numeric/NumberUtilIsPrimeBigIntegerTest.java
 /Users/merveartar/Desktop/JavaAppStudyRepo/Libraries/UtilLib/src/test/java/org/csystem/util/numeric/NumberUtilReverseBigIntegerTest.java
 /Users/merveartar/Desktop/JavaAppStudyRepo/Libraries/UtilLib/src/test/java/org/csystem/util/numeric/NumberUtilIsPrimeTrueTest.java
+/Users/merveartar/Desktop/JavaAppStudyRepo/Libraries/UtilLib/src/test/java/org/csystem/util/numeric/NumberUtilIsSuperPrimeBigIntegerTest.java
+/Users/merveartar/Desktop/JavaAppStudyRepo/Libraries/UtilLib/src/test/java/org/csystem/util/numeric/data/BigIntegerDataInfo.java
 /Users/merveartar/Desktop/JavaAppStudyRepo/Libraries/UtilLib/src/test/java/org/csystem/util/numeric/NumberUtilMidTest.java
 /Users/merveartar/Desktop/JavaAppStudyRepo/Libraries/UtilLib/src/test/java/org/csystem/util/numeric/NumberUtilFactorialBigIntegerTest.java

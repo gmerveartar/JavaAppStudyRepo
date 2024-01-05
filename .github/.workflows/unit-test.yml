@@ -5,6 +5,7 @@ on:
     - development
     - main
     - integration
+    - unit-test
 
 jobs:
   tests:

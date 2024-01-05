@@ -15,4 +15,5 @@ jobs:
       - name: Unit Tests
         run: |
           ls -a 
+          pwd
           make unit-tests-docker

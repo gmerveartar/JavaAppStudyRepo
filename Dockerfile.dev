@@ -2,15 +2,16 @@
 
 FROM maven
 
-
 RUN mkdir /usr/src/app
-
+# ARG DEBIAN_FRONTEND=noninteractive
+RUN apt-get update
+RUN apt install -y build-essential
 WORKDIR /usr/src/app
 
 COPY Libraries /usr/src/app/Libraries
 COPY Projects /usr/src/app/Projects
 COPY src /usr/src/app/src
 
-
+COPY Makefile /usr/src/app/Makefile
 
 WORKDIR /usr/src/app/Libraries/UtilLib

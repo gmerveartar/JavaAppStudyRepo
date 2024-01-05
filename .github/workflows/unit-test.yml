@@ -16,4 +16,4 @@ jobs:
         run: |
           ls -a 
           pwd
-          make unit-tests-docker
+          make unit-test-docker

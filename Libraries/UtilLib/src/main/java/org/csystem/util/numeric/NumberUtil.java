@@ -190,11 +190,10 @@ public final class NumberUtil {
     {
         var count = BigInteger.ZERO;
         var val = BigInteger.TWO;
-
         while (true) {
             if (isPrime(val))
                 count = count.add(BigInteger.ONE);
-            if (count == n)
+            if (count.compareTo(n)==0)
                 break;
             val = val.add(BigInteger.ONE);
         }

@@ -10,7 +10,7 @@ import org.junit.runners.Parameterized;
 import java.util.Collection;
 import java.util.List;
 
-@Ignore("Tested before and passed")
+// @Ignore("Tested before and passed")
 @RunWith(Parameterized.class)
 public class NumberUtilFibonacciTest {
     IntIntDataInfo dataInfo;

@@ -11,7 +11,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
-    <groupId>com.artardev</groupId>
+    <groupId>org.csystem</groupId>
     <artifactId>DemoLibraryUsageProjectLocal</artifactId>
     <version>11.0.0</version>
     <name>DemoLibraryUsageProjectLocal</name>

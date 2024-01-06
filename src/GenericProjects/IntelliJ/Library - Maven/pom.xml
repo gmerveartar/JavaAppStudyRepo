@@ -11,16 +11,16 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
-    <groupId>com.artardev</groupId>
+    <groupId>org.csystem</groupId>
     <artifactId>GenericLib</artifactId>
-    <version>14.0.0</version>
+    <version>11.0.0</version>
     <name>GenericLib</name>
     <description>Generic Library Provider</description>
 
     <repositories>
         <repository>
-            <id>JavaApp1-Mar-2023</id>
-            <url>https://raw.github.com/oguzkaran/javaapp1-mar-2023-maven-repo/main</url>
+            <id>DemoMavenRepo</id>
+            <url>https://raw.github.com/gmerveartar/DemoMavenRepo/main</url>
         </repository>
     </repositories>
 

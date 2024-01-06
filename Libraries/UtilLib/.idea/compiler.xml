@@ -6,12 +6,14 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="com-artardev-util" />
+        <module name="org-csystem-util" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="com-artardev-util" target="17" />
       <module name="GenericApp" target="17" />
       <module name="GenericLib" target="17" />
+      <module name="org.csystem-util" target="17" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
@@ -19,6 +21,8 @@
       <module name="GenericApp" options="-parameters" />
       <module name="GenericLib" options="-parameters" />
       <module name="com-artardev-util" options="-parameters" />
+      <module name="org-csystem-util" options="-parameters" />
+      <module name="org.csystem-util" options="-parameters" />
     </option>
   </component>
 </project>

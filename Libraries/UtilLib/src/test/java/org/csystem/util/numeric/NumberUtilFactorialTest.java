@@ -22,7 +22,7 @@ public class NumberUtilFactorialTest {
     @Parameterized.Parameters
     public static Collection<IntLongDataInfo> createData()
     {
-        return List.of(new IntLongDataInfo(2, 48),
+        return List.of(new IntLongDataInfo(2, 2),
                 new IntLongDataInfo(3, 6),
                 new IntLongDataInfo(5, 120),
                 new IntLongDataInfo(15, 1_307_674_368_000L)

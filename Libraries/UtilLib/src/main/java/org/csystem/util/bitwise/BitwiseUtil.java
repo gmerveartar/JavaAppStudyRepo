@@ -25,4 +25,21 @@ public class BitwiseUtil {
 
         return size == 0 ? str : String.format("%0" + size + "d", 0) + str;
     }
+    public static int setBit(int val, int n)
+    {
+        return val | 1 << n;
+    }
+    public static long setBit(long val, int n)
+    {
+        return val | 1L << n;
+    }
+    public static int clearBit(int val, int n)
+    {
+        return val & ~(1 << n);
+    }
+    public static long clearBit(long val, int n)
+    {
+        return val & ~(1L << n);
+    }
+
 }

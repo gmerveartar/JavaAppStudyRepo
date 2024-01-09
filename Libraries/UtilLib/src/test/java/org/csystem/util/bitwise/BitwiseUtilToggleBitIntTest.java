@@ -9,7 +9,7 @@ import java.util.Collection;
 import java.util.List;
 
  @RunWith(Parameterized.class)
- public class BitwiseUtilClearBitIntTest {
+ public class BitwiseUtilToggleBitIntTest {
      static class DataInfo {
          int val;
          int n;
@@ -21,7 +21,7 @@ import java.util.List;
              this.expected = expected;
          }
      }
-     public BitwiseUtilClearBitIntTest(DataInfo dataInfo) {
+     public BitwiseUtilToggleBitIntTest(DataInfo dataInfo) {
          this.dataInfo = dataInfo;
      }
  
@@ -29,11 +29,12 @@ import java.util.List;
      @Parameterized.Parameters
      public static Collection<DataInfo> createData()
      {
-         return List.of(new DataInfo(0x51, 4, 0x41));
+         return List.of(new DataInfo(0x51, 4, 0x41),
+                 new DataInfo(0x41, 4, 0x51));
      }
      @Test
      public void test()
      {
-         Assert.assertEquals(dataInfo.expected, BitwiseUtil.clearBit(dataInfo.val, dataInfo.n));
+         Assert.assertEquals(dataInfo.expected, BitwiseUtil.toggleBit(dataInfo.val, dataInfo.n));
      }
  }

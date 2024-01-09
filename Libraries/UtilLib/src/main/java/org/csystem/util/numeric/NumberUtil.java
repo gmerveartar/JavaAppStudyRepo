@@ -1,7 +1,7 @@
 /*-------------------------------------------------------------
 	FILE		: NumberUtil.java
 	AUTHOR		: Java-Nov-2023 Group
-	Last UPDATE	: 8th Dec  2023
+	Last UPDATE	: 9th Jan 2024
 	
 	Utility class for numeric operations
 	
@@ -269,6 +269,10 @@ public final class NumberUtil {
     public static boolean isPerfect(int val)
     {
         return sumFactors(val) == val;
+    }
+    public static boolean isPowerOfTwo(long val)
+    {
+        return val != 0 && (val & (val - 1) ) == 0;
     }
 
     public static boolean isPrime(long val)

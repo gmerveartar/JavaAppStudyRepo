@@ -9,19 +9,16 @@ import java.util.Collection;
 import java.util.List;
 
  @RunWith(Parameterized.class)
- public class BitwiseUtilClearBitIntTest {
+ public class BitwiseUtilClearBitsCountLongTest {
      static class DataInfo {
-         int val;
-         int n;
+         long val;
          int expected;
-
-         public DataInfo(int val, int n, int expected) {
+         public DataInfo(long val, int expected) {
              this.val = val;
-             this.n = n;
              this.expected = expected;
          }
      }
-     public BitwiseUtilClearBitIntTest(DataInfo dataInfo) {
+     public BitwiseUtilClearBitsCountLongTest(DataInfo dataInfo) {
          this.dataInfo = dataInfo;
      }
  
@@ -29,11 +26,15 @@ import java.util.List;
      @Parameterized.Parameters
      public static Collection<DataInfo> createData()
      {
-         return List.of(new DataInfo(0x51, 4, 0x41));
+         return List.of(new DataInfo(0x0000000000000051, 61),
+                 new DataInfo(0x0000000000000041, 62),
+                 new DataInfo(0x0000000000000000, 64),
+                 new DataInfo(0xFFFFFFFFFFFFFFFFL , 0),
+                 new DataInfo(0x8000000000000000L, 63));
      }
      @Test
      public void test()
      {
-         Assert.assertEquals(dataInfo.expected, BitwiseUtil.clearBit(dataInfo.val, dataInfo.n));
+         Assert.assertEquals(dataInfo.expected, BitwiseUtil.clearBitsCount(dataInfo.val));
      }
  }

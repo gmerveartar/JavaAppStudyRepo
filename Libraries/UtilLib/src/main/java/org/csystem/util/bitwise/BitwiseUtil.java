@@ -22,6 +22,41 @@ public class BitwiseUtil {
     {
         return val & ~(1L << n);
     }
+    public static int highestSetBitIndex(int val)
+    {
+        for (var i = Integer.SIZE - 1; i >= 0; --i)
+            if (isSet(val, i))
+                return i;
+        return -1;
+    }
+    public static int highestSetBitIndex(long val)
+    {
+        for (var i = Long.SIZE - 1; i >= 0; --i)
+            if (isSet(val, i))
+                return i;
+        return -1;
+    }
+    public static int highestSetBitIndex(short val)
+    {
+        for (var i = Short.SIZE - 1; i >= 0; --i)
+            if (isSet(val, i))
+                return i;
+        return -1;
+    }
+    public static int highestSetBitIndex(byte val)
+    {
+        for (var i = Byte.SIZE - 1; i >= 0; --i)
+            if (isSet(val, i))
+                return i;
+        return -1;
+    }
+    public static int highestSetBitIndex(char val)
+    {
+        for (var i = Character.SIZE - 1; i >= 0; --i)
+            if (isSet(val, i))
+                return i;
+        return -1;
+    }
     public static boolean isClear(int val, int n)
     {
         return !isSet(val, n);
@@ -29,6 +64,62 @@ public class BitwiseUtil {
     public static boolean isClear(long val, int n)
     {
         return !isSet(val, n);
+    }
+
+    public static int [] indicesOfSetBits(int val)
+    {
+        var indices = new int[setBitsCount(val)];
+        var index = 0;
+
+        for (int i = 0; i < Integer.SIZE; ++i)
+            if (isSet(val, i))
+                indices [index++] = i;
+
+        return indices;
+    }
+    public static int [] indicesOfSetBits(long val)
+    {
+        var indices = new int[setBitsCount(val)];
+        var index = 0;
+
+        for (int i = 0; i < Long.SIZE; ++i)
+            if (isSet(val, i))
+                indices [index++] = i;
+
+        return indices;
+    }
+    public static int [] indicesOfSetBits(short val)
+    {
+        var indices = new int[setBitsCount(val)];
+        var index = 0;
+
+        for (int i = 0; i < Short.SIZE; ++i)
+            if (isSet(val, i))
+                indices [index++] = i;
+
+        return indices;
+    }
+    public static int [] indicesOfSetBits(byte val)
+    {
+        var indices = new int[setBitsCount(val)];
+        var index = 0;
+
+        for (int i = 0; i < Byte.SIZE; ++i)
+            if (isSet(val, i))
+                indices [index++] = i;
+
+        return indices;
+    }
+    public static int [] indicesOfSetBits(char val)
+    {
+        var indices = new int[setBitsCount(val)];
+        var index = 0;
+
+        for (int i = 0; i < Character.SIZE; ++i)
+            if (isSet(val, i))
+                indices [index++] = i;
+
+        return indices;
     }
     public static boolean isReset(int val, int n)
     {
@@ -46,6 +137,42 @@ public class BitwiseUtil {
     {
         return (val & 1L   << n) != 0;
     }
+    public static int lowestSetBitIndex(int val)
+    {
+        for (var i = 0; i < Integer.SIZE; ++i)
+            if (isSet(val, i))
+                return i;
+        return -1;
+    }
+    public static int lowestSetBitIndex(long val)
+    {
+        for (var i = 0; i < Long.SIZE; ++i)
+            if (isSet(val, i))
+                return i;
+        return -1;
+    }
+    public static int lowestSetBitIndex(short val)
+    {
+        for (var i = 0; i < Short.SIZE; ++i)
+            if (isSet(val, i))
+                return i;
+        return -1;
+    }
+    public static int lowestSetBitIndex(byte val)
+    {
+        for (var i = 0; i < Byte.SIZE; ++i)
+            if (isSet(val, i))
+                return i;
+        return -1;
+    }
+    public static int lowestSetBitIndex(char val)
+    {
+        for (var i = 0; i < Character.SIZE; ++i)
+            if (isSet(val, i))
+                return i;
+        return -1;
+    }
+
     public static int resetBit(int val, int n)
     {
         return clearBit(val, n);
@@ -153,19 +280,45 @@ public class BitwiseUtil {
     {
         return clearBitsCount(val);
     }
-    public static String toBinaryStr(int val)
+    public static String toBitStr(int val)
     {
-        var str = Integer.toBinaryString(val);
-        var size = Integer.SIZE - str.length();
+       var sb = new StringBuilder(Integer.SIZE);
+       for (int i = Integer.SIZE - 1; i >= 0; --i)
+           sb.append(isSet(val, i) ? '1' : '0');
 
-        return size == 0 ? str : String.format("%0" + size + "d", 0) + str;
+       return sb.toString();
     }
-    public static String toBinaryStr(long  val)
+    public static String toBitStr(long val)
     {
-        var str = Long.toBinaryString(val);
-        var size = Long.SIZE - str.length();
+        var sb = new StringBuilder(Long.SIZE);
+        for (int i = Long.SIZE - 1; i >= 0; --i)
+            sb.append(isSet(val, i) ? '1' : '0');
 
-        return size == 0 ? str : String.format("%0" + size + "d", 0) + str;
+        return sb.toString();
+    }
+    public static String toBitStr(short val)
+    {
+        var sb = new StringBuilder(Short.SIZE);
+        for (int i = Short.SIZE - 1; i >= 0; --i)
+            sb.append(isSet(val, i) ? '1' : '0');
+
+        return sb.toString();
+    }
+    public static String toBitStr(byte val)
+    {
+        var sb = new StringBuilder(Byte.SIZE);
+        for (int i = Byte.SIZE - 1; i >= 0; --i)
+            sb.append(isSet(val, i) ? '1' : '0');
+
+        return sb.toString();
+    }
+    public static String toBitStr(char val)
+    {
+        var sb = new StringBuilder(Character.SIZE);
+        for (int i = Character .SIZE - 1; i >= 0; --i)
+            sb.append(isSet(val, i) ? '1' : '0');
+
+        return sb.toString();
     }
     public static int toggleBit(int val, int n)
     {

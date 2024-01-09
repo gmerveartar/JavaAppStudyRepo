@@ -9,7 +9,7 @@ import java.util.Collection;
 import java.util.List;
 
 @RunWith(Parameterized.class)
-public class BitwiseUtilToBinaryStrLongTest {
+public class BitwiseUtilToBitStrLongTest {
     static class DataInfo {
         long a;
         String s;
@@ -18,7 +18,7 @@ public class BitwiseUtilToBinaryStrLongTest {
             this.s = s;
         }
     }
-    public BitwiseUtilToBinaryStrLongTest(DataInfo dataInfo) {
+    public BitwiseUtilToBitStrLongTest(DataInfo dataInfo) {
         this.dataInfo = dataInfo;
     }
     DataInfo dataInfo;
@@ -34,6 +34,6 @@ public class BitwiseUtilToBinaryStrLongTest {
     @Test
     public void test()
     {
-        Assert.assertEquals(dataInfo.s, BitwiseUtil.toBinaryStr(dataInfo.a));
+        Assert.assertEquals(dataInfo.s, BitwiseUtil.toBitStr(dataInfo.a));
     }
 }

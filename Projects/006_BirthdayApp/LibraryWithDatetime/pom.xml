@@ -13,9 +13,15 @@
 
     <groupId>org.csystem</groupId>
     <artifactId>BirthDateAppLib</artifactId>
-    <version>11.0.0</version>
-    <name>LibraryWithCalendar</name>
+    <version>11.0.1</version>
+    <name>BirthDateAppLib</name>
 
+    <repositories>
+        <repository>
+            <id>DemoMavenRepo</id>
+            <url>https://raw.github.com/gmerveartar/DemoMavenRepo/main</url>
+        </repository>
+    </repositories>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
@@ -24,6 +30,13 @@
     </properties>
 
     <dependencies>
+
+        <dependency>
+            <groupId>org.csystem</groupId>
+            <artifactId>org-csystem-util-datetime-legacy</artifactId>
+            <version>11.0.0</version>
+        </dependency>
+
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>

@@ -32,8 +32,8 @@
     <dependencies>
         <dependency>
             <groupId>org.csystem</groupId>
-            <artifactId>LibraryWithCalendar</artifactId>
-            <version>11.0.0</version>
+            <artifactId>BirthDateAppLib</artifactId>
+            <version>11.0.2</version>
         </dependency>
 
         <dependency>

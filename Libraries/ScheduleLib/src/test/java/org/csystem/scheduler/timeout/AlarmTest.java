@@ -11,7 +11,7 @@ public class AlarmTest {
     public void test() throws InterruptedException
     {
         var dateTime = LocalDateTime.now().plusSeconds(5);
-        var alarm = new Alarm(dateTime);
+        var alarm = Alarm.of(dateTime);
         alarm.start(new TimerTask() {
             public void run()
             {

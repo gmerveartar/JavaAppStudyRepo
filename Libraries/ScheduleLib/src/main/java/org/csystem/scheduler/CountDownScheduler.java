@@ -1,3 +1,13 @@
+/*-------------------------------------------------------------
+	FILE		: CountDownScheduler.java
+	AUTHOR		: Java-Nov-2023 Group
+	Last UPDATE	: 8th Feb 2024
+
+	CountDownScheduler class for count-down operations
+
+	Copyleft (c) 1993 C and System Programmers Association
+	All Right Free
+-------------------------------------------------------------*/
 package org.csystem.scheduler;
 
 import java.util.Timer;

@@ -39,4 +39,5 @@ buildNumber.properties
 *.nar
 hs_err_pid*
 replay_pid*
-Projects/004_Guava&CommonsStopwatchClassesUsage/.idea/misc.xml
+*.java
+

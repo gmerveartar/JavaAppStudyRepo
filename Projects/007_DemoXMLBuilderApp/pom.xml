@@ -12,10 +12,16 @@
     </parent>
 
     <groupId>org.csystem</groupId>
-    <artifactId>BirthDateAppLib</artifactId>
+    <artifactId>DemoXMLBuilderApp</artifactId>
     <version>11.0.0</version>
-    <name>LibraryWithCalendar</name>
+    <name>DemoXMLBuilderApp</name>
 
+    <repositories>
+        <repository>
+            <id>DemoMavenRepo</id>
+            <url>https://raw.github.com/gmerveartar/DemoMavenRepo/main</url>
+        </repository>
+    </repositories>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
@@ -25,20 +31,24 @@
 
     <dependencies>
         <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.13.2</version>
-            <scope>test</scope>
+            <groupId>com.karandev</groupId>
+            <artifactId>com-karandev-util-console</artifactId>
+            <version>11.0.0</version>
         </dependency>
 
-     </dependencies>
+        <dependency>
+            <groupId>org.csystem</groupId>
+            <artifactId>org-csystem-util</artifactId>
+            <version>12.0.0</version>
+        </dependency>
+
+    </dependencies>
 
     <build>
         <plugins>
             <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-jar-plugin</artifactId>
-                <version>3.3.0</version>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
         </plugins>
     </build>

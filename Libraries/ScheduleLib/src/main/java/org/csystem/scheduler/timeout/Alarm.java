@@ -1,7 +1,7 @@
 /*-------------------------------------------------------------
 	FILE		: Alarm.java
 	AUTHOR		: Java-Nov-2023 Group
-	Last UPDATE	: 8th Feb 2024
+	Last UPDATE	: 9th Feb 2024
 
 	Alarm class
 
@@ -43,15 +43,15 @@ public class Alarm {
     {
         return new Alarm(dateTime);
     }
-    public void start(TimerTask task)
+    public void start(Runnable runnable)
     {
-        m_timer.scheduleAtFixedRate(createTimerTask(task), 0, 1000);
+        m_timer.scheduleAtFixedRate(createTimerTask(runnable), 0, 1000);
     }
     public void cancel()
     {
         m_timer.cancel();
     }
-    private TimerTask createTimerTask(TimerTask timerTask)
+    private TimerTask createTimerTask(Runnable runnable)
     {
         return new TimerTask() {
             public void run()
@@ -59,12 +59,12 @@ public class Alarm {
                 if (LocalDateTime.now().isBefore(m_dateTime))
                     return;
 
-                timerTask.run();
+                runnable.run();
                 m_timer.cancel();
                 if (m_repeat) {
                     m_timer = new Timer();
                     m_dateTime = m_dateTime.plusDays(1);
-                    m_timer.scheduleAtFixedRate(createTimerTask(timerTask), 0, 1000);
+                    m_timer.scheduleAtFixedRate(createTimerTask(runnable), 0, 1000);
                 }
             }
         };

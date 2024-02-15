@@ -10,8 +10,7 @@ public class AlarmTest {
     @Test
     public void test() throws InterruptedException
     {
-        var dateTime = LocalDateTime.now().plusSeconds(5);
-        var alarm = Alarm.of(dateTime);
+        var alarm = Alarm.of(LocalDateTime.now().plusSeconds(5));
 
         alarm.start(() -> Console.writeLine("Alarm..!"));
 

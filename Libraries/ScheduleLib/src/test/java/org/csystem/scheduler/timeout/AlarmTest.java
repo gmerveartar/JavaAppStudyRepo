@@ -1,23 +1,18 @@
 package org.csystem.scheduler.timeout;
 
+import com.karandev.io.util.console.Console;
 import org.junit.Test;
 
 import java.time.LocalDateTime;
-import java.util.TimerTask;
 
 public class AlarmTest {
 
     @Test
     public void test() throws InterruptedException
     {
-        var dateTime = LocalDateTime.now().plusSeconds(5);
-        var alarm = Alarm.of(dateTime);
-        alarm.start(new TimerTask() {
-            public void run()
-            {
-                System.out.println("Alarm..!");
-            }
-        });
+        var alarm = Alarm.of(LocalDateTime.now().plusSeconds(5));
+
+        alarm.start(() -> Console.writeLine("Alarm..!"));
 
         Thread.sleep(6000);
     }

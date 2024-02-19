@@ -1,7 +1,7 @@
 /*-------------------------------------------------------------
 	FILE		: Alarm.java
 	AUTHOR		: Java-Nov-2023 Group
-	Last UPDATE	: 8th Feb 2024
+	Last UPDATE	: 15th Feb 2024
 
 	Alarm class
 
@@ -10,20 +10,35 @@
 -------------------------------------------------------------*/
 package org.csystem.scheduler.timeout;
 
+import org.csystem.scheduler.Scheduler;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.util.Timer;
 import java.util.TimerTask;
 
 public class Alarm {
     private LocalDateTime m_dateTime;
-    private Timer m_timer;
+    private Scheduler m_scheduler;
     private boolean m_repeat;
+    private Runnable createTask(Runnable runnable)
+    {
+        return new TimerTask() {
+            public void run()
+            {
+                runnable.run();
+                if (m_repeat) {
+                    m_scheduler = Scheduler.of();
+                    m_dateTime = m_dateTime.plusDays(1);
+                    m_scheduler.schedule(createTask(runnable), m_dateTime);
+                 }
+            }
+        };
+    }
     private Alarm(LocalDateTime dateTime)
     {
         m_dateTime = dateTime;
-        m_timer = new Timer();
+        m_scheduler = Scheduler.of();
     }
     public static Alarm of(LocalTime time, boolean repeat)
     {
@@ -43,31 +58,12 @@ public class Alarm {
     {
         return new Alarm(dateTime);
     }
-    public void start(TimerTask task)
+    public void start(Runnable runnable)
     {
-        m_timer.scheduleAtFixedRate(createTimerTask(task), 0, 1000);
+         m_scheduler.schedule(createTask(runnable), m_dateTime);
     }
     public void cancel()
     {
-        m_timer.cancel();
+        m_scheduler.cancel();
     }
-    private TimerTask createTimerTask(TimerTask timerTask)
-    {
-        return new TimerTask() {
-            public void run()
-            {
-                if (LocalDateTime.now().isBefore(m_dateTime))
-                    return;
-
-                timerTask.run();
-                m_timer.cancel();
-                if (m_repeat) {
-                    m_timer = new Timer();
-                    m_dateTime = m_dateTime.plusDays(1);
-                    m_timer.scheduleAtFixedRate(createTimerTask(timerTask), 0, 1000);
-                }
-            }
-        };
-    }
-
 }

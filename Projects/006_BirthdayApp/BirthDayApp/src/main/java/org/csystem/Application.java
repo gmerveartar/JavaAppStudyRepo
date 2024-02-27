@@ -14,13 +14,22 @@ public class Application {
             case TODAY -> Console.writeLine("Happy birthday. Your age : %.0f ", age);
         }
     }
-    public static void run()
+    public static void run(String[] args)
     {
-        var day = Console.readInt("Input day : ", "Invalid day");
-        var month = Console.readInt("Input month : ", "Invalid month");
-        var year = Console.readInt("Input year : ", "Invalid year");
+        int day = 0, month = 0, year = 0;
+        if (args.length != 3 && args.length != 0) {
+            Console.Error.writeLine("Wrong number of arguments");
+            System.exit(1);
+        }
+        try {
+            day = args.length == 3 ? Integer.parseInt(args[0]) : Console.readInt("Input day : ", "Invalid day");
+            month = args.length == 3 ? Integer.parseInt(args[1]) : Console.readInt("Input month : ", "Invalid month");
+            year = args.length == 3 ? Integer.parseInt(args[2]) : Console.readInt("Input year : ", "Invalid year");
+        }
+        catch (NumberFormatException ignore) {
+            Console.Error.writeLine("Invalid arguments");
+        }
 
         printBirthdayMessage(new BirthdayOperations(day, month, year));
     }
-
 }

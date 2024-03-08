@@ -1,5 +1,5 @@
 /*-------------------------------------------------------------
-	FILE		: IntRange.java
+	FILE		: IntToLongRange.java
 	AUTHOR		: Java-Nov-2023 Group
 	Last UPDATE	: 7th Mar 2024
 
@@ -12,20 +12,20 @@ package org.csystem.range;
 
 import java.util.Iterator;
 import java.util.NoSuchElementException;
-import java.util.function.IntUnaryOperator;
+import java.util.function.LongUnaryOperator;
 
-public class IntRange implements Iterable<Integer> {
+public class IntToLongRange implements Iterable<Long> {
     private final int m_a;
     private final int m_b;
-    private final IntUnaryOperator m_unaryOperator;
-    private IntRange(int a, int b, IntUnaryOperator unaryOperator)
+    private final LongUnaryOperator m_longUnaryOperator;
+    private IntToLongRange(int a, int b, LongUnaryOperator longUnaryOperator)
     {
         m_a = a;
         m_b = b;
-        m_unaryOperator = unaryOperator;
+        m_longUnaryOperator = longUnaryOperator;
     }
 
-    public static IntRange of(int a, int b, int step)
+    public static IntToLongRange of(int a, int b, int step)
     {
         if (a > b)
             throw new IllegalArgumentException(String.format("a cannot be greater than b: a = %d, b = %d", a, b));
@@ -33,25 +33,25 @@ public class IntRange implements Iterable<Integer> {
         if (step <= 0)
             throw new IllegalArgumentException(String.format("step must be positive : step = %d", step));
 
-        return new IntRange(a, b, val -> val + step);
+        return new IntToLongRange(a, b, val -> val + step);
     }
-    public static IntRange of(int a, int b)
+    public static IntToLongRange of(int a, int b)
     {
        return of(a, b, 1);
     }
-    public static IntRange of(int a, int b, IntUnaryOperator unaryOperator)
+    public static IntToLongRange of(int a, int b, LongUnaryOperator longUnaryOperator)
     {
         if (a > b)
             throw new IllegalArgumentException(String.format("a cannot be greater than b: a = %d, b = %d", a, b));
 
-        return new IntRange(a, b, unaryOperator);
+        return new IntToLongRange(a, b, longUnaryOperator);
     }
 
     @Override
-    public Iterator<Integer> iterator()
+    public Iterator<Long> iterator()
     {
         return new Iterator<>() {
-            int value = m_a;
+            long value = m_a;
             @Override
             public boolean hasNext()
             {
@@ -59,13 +59,13 @@ public class IntRange implements Iterable<Integer> {
             }
 
             @Override
-            public Integer next()
+            public Long next()
             {
                 if (!hasNext())
                     throw new NoSuchElementException("No such element!...");
 
                 var result = value;
-                value = m_unaryOperator.applyAsInt(value);
+                value = m_longUnaryOperator.applyAsLong(value);
 
                 return result;
             }

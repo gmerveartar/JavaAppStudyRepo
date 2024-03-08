@@ -5,20 +5,18 @@ import org.junit.Test;
 
 import java.util.Arrays;
 import java.util.Random;
-import java.util.random.RandomGenerator;
 
-public class RandomIntGeneratorTest {
+public class RandomDoubleGeneratorTest {
     @Test
     public void givenValues_whenOriginBoundCountAndRandomGenerator_thenIterate()
     {
-        var count = 100_000;
-        var a = new int[count];
-        var origin = 10;
-        var bound = 100;
+        var count = 10_000;
+        var a = new double[count];
+        var origin = 2.3456;
+        var bound = 2.3556;
         var index = 0;
 
-        for (int val : RandomIntGenerator.of(new Random(), origin, bound, count)) {
-            // System.out.printf("%d ", val);
+        for (double val : RandomDoubleGenerator.of(new Random(), origin, bound, count)) {
             a[index++] = val;
         }
 

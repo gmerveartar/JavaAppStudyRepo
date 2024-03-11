@@ -14,6 +14,8 @@ unit-test:
 unit-tests-folder:
 	cp Makefile /usr/src/app/Projects && cd /usr/src/app/Projects && make unit-test	
 	cp Makefile /usr/src/app/Libraries && cd /usr/src/app/Libraries && make unit-test
+	pwd
+	echo "RUN SUCCESSFUL"
 
 unit-test-docker:
 	docker compose build merve-unit-test 

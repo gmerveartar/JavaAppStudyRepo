@@ -12,9 +12,9 @@
     </parent>
 
     <groupId>org.csystem</groupId>
-    <artifactId>CodingChallenges</artifactId>
-    <version>12.0.0</version>
-    <name>CodingChallenges</name>
+    <artifactId>CommandPromptApp</artifactId>
+    <version>11.0.0</version>
+    <name>CommandPromptApp</name>
 
     <repositories>
         <repository>
@@ -31,19 +31,24 @@
 
     <dependencies>
         <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.13.2</version>
-            <scope>test</scope>
+            <groupId>com.karandev</groupId>
+            <artifactId>com-karandev-util-console</artifactId>
+            <version>11.2.0</version>
         </dependency>
+
+        <dependency>
+            <groupId>org.csystem</groupId>
+            <artifactId>org-csystem-util</artifactId>
+            <version>12.1.0</version>
+        </dependency>
+
     </dependencies>
 
     <build>
         <plugins>
             <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-jar-plugin</artifactId>
-                <version>3.3.0</version>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
         </plugins>
     </build>

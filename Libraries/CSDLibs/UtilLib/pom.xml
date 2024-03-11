@@ -6,14 +6,15 @@
 
     <parent>
         <groupId>org.csystem</groupId>
-        <artifactId>BirthdayApplication</artifactId>
+        <artifactId>CSDLibs</artifactId>
         <version>1.0.0</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 
-    <artifactId>BirthDateAppLib</artifactId>
-    <version>11.0.2</version>
-    <name>BirthDateAppLibLocalDate</name>
+    <artifactId>org-csystem-util</artifactId>
+    <version>12.1.0</version>
+    <name>org-csystem-util</name>
+    <description>Utility Library</description>
 
     <dependencies>
         <dependency>
@@ -22,7 +23,7 @@
             <version>4.13.2</version>
             <scope>test</scope>
         </dependency>
-    </dependencies>
+     </dependencies>
 
     <build>
         <plugins>

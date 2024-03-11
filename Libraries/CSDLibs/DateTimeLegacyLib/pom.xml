@@ -6,14 +6,14 @@
 
     <parent>
         <groupId>org.csystem</groupId>
-        <artifactId>BirthdayApplication</artifactId>
+        <artifactId>CSDLibs</artifactId>
         <version>1.0.0</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 
-    <artifactId>BirthDateAppLib</artifactId>
-    <version>11.0.2</version>
-    <name>BirthDateAppLibLocalDate</name>
+    <artifactId>org-csystem-util-datetime-legacy</artifactId>
+    <version>11.0.0</version>
+    <name>org-csystem-util-datetime-legacy</name>
 
     <dependencies>
         <dependency>
@@ -33,5 +33,4 @@
             </plugin>
         </plugins>
     </build>
-
 </project>

@@ -1,11 +1,10 @@
-package org.csystem.range;
+package org.csystem.generator.random;
 
 import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.Arrays;
 import java.util.Random;
-import java.util.random.RandomGenerator;
 
 public class RandomIntGeneratorTest {
     @Test

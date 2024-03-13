@@ -1,5 +1,6 @@
-package org.csystem.range;
+package org.csystem.generator.random;
 
+import org.csystem.generator.random.RandomDoubleGenerator;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -16,7 +17,7 @@ public class RandomDoubleGeneratorTest {
         var bound = 2.3556;
         var index = 0;
 
-        for (double val : RandomDoubleGenerator.of(new Random(), origin, bound, count)) {
+        for (double val : RandomDoubleGenerator .of(new Random(), origin, bound, count)) {
             a[index++] = val;
         }
 

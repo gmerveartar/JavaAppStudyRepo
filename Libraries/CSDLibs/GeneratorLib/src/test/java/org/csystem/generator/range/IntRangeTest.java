@@ -1,9 +1,7 @@
-package org.csystem.range;
+package org.csystem.generator.range;
 
 import org.junit.Assert;
 import org.junit.Test;
-
-import java.io.Console;
 
 public class IntRangeTest {
 

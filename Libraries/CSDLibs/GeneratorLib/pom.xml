@@ -11,9 +11,9 @@
         <relativePath>../pom.xml</relativePath>
     </parent>
 
-    <artifactId>org-csystem-range</artifactId>
-    <version>11.0.0</version>
-    <name>org-csystem-range</name>
+    <artifactId>org-csystem-generator</artifactId>
+    <version>12.1.0</version>
+    <name>org-csystem-generator</name>
 
     <dependencies>
         <dependency>

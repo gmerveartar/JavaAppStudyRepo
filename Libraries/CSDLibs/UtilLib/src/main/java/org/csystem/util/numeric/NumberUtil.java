@@ -1,7 +1,7 @@
 /*-------------------------------------------------------------
 	FILE		: NumberUtil.java
 	AUTHOR		: Java-Nov-2023 Group
-	Last UPDATE	: 9th Jan 2024
+	Last UPDATE	: 11th Mar 2024
 	
 	Utility class for numeric operations
 	
@@ -10,7 +10,14 @@
 -------------------------------------------------------------*/
 package org.csystem.util.numeric;
 
+import org.csystem.util.console.Console;
+
+import javax.swing.text.html.Option;
 import java.math.BigInteger;
+import java.util.NoSuchElementException;
+import java.util.OptionalDouble;
+import java.util.OptionalInt;
+import java.util.OptionalLong;
 
 import static java.lang.Math.*;
 
@@ -500,6 +507,45 @@ public final class NumberUtil {
             if (val % i == 0)
                 result += (int)((i == val / i) ? i : (i + val / i));
 
+        return result;
+    }
+
+    public static OptionalDouble toDouble(String str )
+    {
+        var result = OptionalDouble.empty();
+        try {
+            result = OptionalDouble.of(Double.parseDouble(str));
+        }
+        catch (NumberFormatException  ignore) {
+        }
+        return result;
+    }
+    public static OptionalInt toInt(String str)
+    {
+        return toInt(str, 10);
+    }
+    public static OptionalInt toInt(String str, int radix)
+    {
+        var result = OptionalInt.empty();
+        try {
+            result = OptionalInt.of(Integer.parseInt(str, radix ));
+        }
+        catch (NumberFormatException  ignore) {
+        }
+        return result;
+    }
+    public static OptionalLong toLong(String str)
+    {
+        return toLong(str, 10);
+    }
+    public static OptionalLong toLong(String str, int radix)
+    {
+        var result = OptionalLong.empty();
+        try {
+            result = OptionalLong.of(Long.parseLong(str, radix ));
+        }
+        catch (NumberFormatException  ignore) {
+        }
         return result;
     }
 }

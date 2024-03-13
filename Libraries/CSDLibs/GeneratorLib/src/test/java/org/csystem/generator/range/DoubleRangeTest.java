@@ -1,4 +1,4 @@
-package org.csystem.range;
+package org.csystem.generator.range;
 
 import org.junit.Test;
 

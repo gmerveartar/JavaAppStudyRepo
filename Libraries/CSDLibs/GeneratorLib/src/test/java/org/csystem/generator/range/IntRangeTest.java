@@ -11,7 +11,7 @@ public class IntRangeTest {
         var a = 10;
         var b = 20;
         var index = 0;
-
+ 
         for (int val : IntRange.of(a, b)) {
             System.out.printf("%d ", val);
             Assert.assertEquals(a + index++, val);

@@ -126,38 +126,39 @@ public class CSDArrayList<E> implements List<E> {
     @Override
     public int indexOf(Object o)
     {
-        return 0;
+        throw new UnsupportedOperationException("TODO:");
     }
 
     @Override
     public int lastIndexOf(Object o)
     {
-        return 0;
+        throw new UnsupportedOperationException("TODO:");
     }
 
     @Override
     public ListIterator<E> listIterator()
     {
-        return null;
+        throw new UnsupportedOperationException("Unsupported");
+
     }
 
     @Override
     public ListIterator<E> listIterator(int index)
     {
-        return null;
+        throw new UnsupportedOperationException("Unsupported:");
     }
 
     @Override
     public List<E> subList(int fromIndex, int toIndex)
     {
-        return null;
+        throw new UnsupportedOperationException("Unsupported");
     }
 
     @Override
     public E set(int index, E e)
     {
         checkIndex(index);
-        E old  = m_elements[index];
+        E old = m_elements[index];
 
         m_elements[index] = e;
 
@@ -185,7 +186,19 @@ public class CSDArrayList<E> implements List<E> {
     @Override
     public Iterator<E> iterator()
     {
-        throw new UnsupportedOperationException("TODO:");
+        return new Iterator<E>() {
+            @Override
+            public boolean hasNext()
+            {
+                throw new UnsupportedOperationException("TODO:");
+            }
+
+            @Override
+            public E next()
+            {
+                throw new UnsupportedOperationException("TODO:");
+            }
+        };
     }
 
     @Override

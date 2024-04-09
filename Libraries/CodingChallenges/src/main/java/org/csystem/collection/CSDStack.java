@@ -1,7 +1,7 @@
  /*----------------------------------------------------------------
 	FILE		: CSDStack.java
 	AUTHOR		: JavaApp1-Nov-2023 Group
-	LAST UPDATE	: 24th Mar 2024
+	LAST UPDATE	: 9th Apr 2024
 
 	CSDStack class
 
@@ -10,28 +10,40 @@
 ----------------------------------------------------------------*/
 package org.csystem.collection;
 
-public class CSDStack<E> {
+ import java.util.ArrayList;
+ import java.util.EmptyStackException;
+
+ public class CSDStack<E> {
+    private ArrayList<E> m_elements = new ArrayList<>();
     public boolean empty()
     {
-        throw new UnsupportedOperationException("TODO");
+        return m_elements.isEmpty();
     }
 
     public E push(E e)
     {
-        throw new UnsupportedOperationException("TODO");
+        m_elements.add(e);
+        return e;
     }
 
     public E pop()
     {
-        throw new UnsupportedOperationException("TODO");
+        if (empty())
+            throw new EmptyStackException();
+        return m_elements.remove(m_elements.size() - 1);
+        
     }
 
     public E peek()
     {
-        throw new UnsupportedOperationException("TODO");
+        if (empty())
+            throw new EmptyStackException();
+        return m_elements.get(m_elements.size() - 1);
     }
     public int search(E e)
     {
-        throw new UnsupportedOperationException("TODO");
-    }
+        var index = m_elements.indexOf(e);
+
+        return index != -1 ? m_elements.size() - index : index;
+     }
 }

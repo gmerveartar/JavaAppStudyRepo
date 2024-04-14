@@ -22,7 +22,7 @@ import java.util.EmptyStackException;
      @Test
      public void test ()
      {
-         Assert.assertThrows(FullStackException .class, () -> m_stack.push(20));
+         Assert.assertThrows(FullStackException.class, () -> m_stack.push(20));
      }
 
  }

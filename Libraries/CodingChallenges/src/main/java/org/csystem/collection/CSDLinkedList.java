@@ -27,6 +27,7 @@ public class CSDLinkedList<E> implements List<E>{
             this.e = e;
         }
     }
+
     @Override
     public int size()
     {

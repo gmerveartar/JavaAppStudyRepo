@@ -32,7 +32,7 @@ import java.util.List;
          }
      }
      DataInfo data;
-     CSDArraylistAddAllTest(DataInfo data) {
+     public CSDArraylistAddAllTest(DataInfo data) {
          this.data = data;
      }
      @Parameterized.Parameters

@@ -7,23 +7,28 @@
 
 	Copyleft (c) 1993 C and System Programmers Association
 	All Rights Free
+
+	Yalnızca Object sınıfından türetilen, Queue<E> arayüzünü implemente eden ve dinamik olarak büyüyebilen
+    CSDQueue sınıfını yazınız ve test ediniz
+    Sınıfın public bölümünü değiştirmeden istediğiniz eklemeyi yapabilirsiniz
 ----------------------------------------------------------------*/
 package org.csystem.collection;
 
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.Queue;
+import java.util.*;
+
 public class CSDQueue<E> implements Queue<E> {
+    private final ArrayList<E> m_elements = new ArrayList<>();
+    private int m_index;
     @Override
     public int size()
     {
-        throw new UnsupportedOperationException("TODO");
+        return m_index;
     }
 
     @Override
     public boolean isEmpty()
     {
-        throw new UnsupportedOperationException("TODO");
+        return m_index == 0;
     }
 
     @Override
@@ -35,7 +40,22 @@ public class CSDQueue<E> implements Queue<E> {
     @Override
     public Iterator<E> iterator()
     {
-        throw new UnsupportedOperationException("TODO");
+        return new Iterator<E>() {
+            int index;
+            @Override
+            public boolean hasNext()
+            {
+                return index < m_index;
+            }
+
+            @Override
+            public E next() {
+                if (!hasNext())
+                    throw new NoSuchElementException();
+
+                return m_elements.get(index++);
+            }
+        };
     }
 
     @Override
@@ -65,7 +85,9 @@ public class CSDQueue<E> implements Queue<E> {
     @Override
     public boolean addAll(Collection<? extends E> c)
     {
-        throw new UnsupportedOperationException("TODO");
+        for (var e : c)
+            add(e);
+        return true;
     }
 
     @Override
@@ -89,7 +111,10 @@ public class CSDQueue<E> implements Queue<E> {
     @Override
     public boolean add(E e)
     {
-        throw new UnsupportedOperationException("TODO");
+         if (!m_elements.add(e))
+             throw new IllegalStateException();
+         m_index++;
+         return true;
     }
 
     @Override

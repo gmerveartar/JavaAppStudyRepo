@@ -1,3 +1,13 @@
+/*-------------------------------------------------------------
+	FILE		: Line.java
+	AUTHOR		: JavaApp1-Nov-2023 Group
+	Last UPDATE	: 7th May 2024
+
+	Line class that represents a line 
+
+	Copyleft (c) 1993 C and System Programmers Association
+	All Right Free
+-------------------------------------------------------------*/
 package org.csystem.math.geometry;
 
 public class Line {
@@ -70,12 +80,18 @@ public class Line {
     @Override
     public boolean equals(Object obj)
     {
-        return super.equals(obj);
+        throw new UnsupportedOperationException("TODO");
+    }
+
+    @Override
+    public int hashCode()
+    {
+        throw new UnsupportedOperationException("TODO");
     }
 
     @Override
     public String toString()
     {
-        return super.toString();
+        throw new UnsupportedOperationException("TODO");
     }
 }

@@ -2,7 +2,7 @@
 /*-------------------------------------------------------------
 	FILE		: PointCommon.java
 	AUTHOR		: JavaApp1-Nov-2023 Group
-	Last UPDATE	: 14th Oct 2023
+	Last UPDATE	: 7th May 2024
 
     Utility friendly class for common operations of
     Point and MutablePoint classes
@@ -11,6 +11,8 @@
 	All Right Free
 -------------------------------------------------------------*/
 package org.csystem.math.geometry;
+
+import java.util.Objects;
 
 final class PointCommon {
     private PointCommon()
@@ -22,6 +24,11 @@ final class PointCommon {
     static boolean equals(double x1, double y1, double x2, double y2)
     {
         return Math.abs(x1 - x2) < DELTA && Math.abs(y1 - y2) < DELTA;
+    }
+
+    static int hashCode(double x, double y)
+    {
+        return Objects.hash(x, y);
     }
 
     static double distance(double x1, double y1, double x2, double y2)

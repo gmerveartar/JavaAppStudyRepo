@@ -1,7 +1,7 @@
 /*-------------------------------------------------------------
 	FILE		: ArrayUtil.java
 	AUTHOR		: Java-Nov-2023 Group
-	Last UPDATE	: 1st Dec 2023
+	Last UPDATE	: 7 th May 2024
 
 	Utility class for array operations
 
@@ -11,7 +11,11 @@
 package org.csystem.util.array;
 
 
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.random.RandomGenerator;
+
 
 public final class ArrayUtil {
     private ArrayUtil()
@@ -65,6 +69,7 @@ public final class ArrayUtil {
         }
     }
 
+
     public static void addBy(int [] a, int val)
     {
         for (var i = 0; i < a.length; ++i)
@@ -76,8 +81,30 @@ public final class ArrayUtil {
         for (var array : a)
             addBy(array, val);
     }
+    public static <T> boolean areAllUnique(T [] a)
+    {
+        var set = new HashSet<T>();
 
-    public static void bubbleSort(int [] a)
+        Collections.addAll(set, a);
+
+        return set.size() == a.length;
+    }
+
+    public static boolean areAllUnique(int [] a)
+    {
+        return Arrays.stream(a).distinct().count() == a.length;
+    }
+    public static boolean areAllUnique(long [] a)
+    {
+        return Arrays.stream(a).distinct().count() == a.length;
+
+    }
+    public static boolean areAllUnique(double [] a)
+    {
+        return Arrays.stream(a).distinct().count() == a.length;
+
+    }
+     public static void bubbleSort(int [] a)
     {
         bubbleSort(a, false);
     }

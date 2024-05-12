@@ -17,41 +17,29 @@ package org.csystem.collection;
  import java.lang.reflect.Array;
  import java.util.*;
 
- public class CSDMinStack<E> {
-     private ArrayList<E> m_list = new ArrayList<>();
-     private final ArrayList<E> m_minList = new ArrayList<>();
-     private Comparator<E> m_comp;
-
-
-     public boolean empty()
+public class CSDMinStack<E> {
+    public boolean empty()
     {
-        return m_list.isEmpty();
+        throw new UnsupportedOperationException("TODO:");
     }
 
     public E push(E e)
     {
-        throw new UnsupportedOperationException("TODO");
+        throw new UnsupportedOperationException("TODO:");
     }
 
     public E pop()
     {
-        throw new UnsupportedOperationException("TODO");
+        throw new UnsupportedOperationException("TODO:");
     }
 
     public E peek()
     {
-        throw new UnsupportedOperationException("TODO");
+        throw new UnsupportedOperationException("TODO:");
     }
 
-    public E min(Comparator<? extends E> comp)
-    {
-        Collections.sort(m_list, comp);
-
-        return m_list.get(0);
-    }
-    @Override
-    private int compareTo()
+    public E min(Comparator<? extends E> comparator)
     {
         throw new UnsupportedOperationException("TODO");
     }
- }
+}

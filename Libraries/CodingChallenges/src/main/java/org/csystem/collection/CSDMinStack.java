@@ -30,9 +30,7 @@ package org.csystem.collection;
 
     public E push(E e)
     {
-        m_list.add(e);
-        if (m_minList.isEmpty() ||  )
-        ;
+        throw new UnsupportedOperationException("TODO");
     }
 
     public E pop()

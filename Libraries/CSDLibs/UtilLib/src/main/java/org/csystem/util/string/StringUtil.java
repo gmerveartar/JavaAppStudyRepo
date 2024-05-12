@@ -11,6 +11,7 @@
 package org.csystem.util.string;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.random.RandomGenerator;
 
@@ -43,6 +44,42 @@ public final class StringUtil {
         return s.length() == set.size();
 
     }
+
+    public static boolean areAnagram(CharSequence s1, CharSequence s2)
+    {
+        var len1 = s1.length();
+        var len2 = s2.length();
+
+        if (len1 != len2)
+            return false;
+
+        var map = new HashMap<Character, Integer>();
+        for (var i = 0; i < len1; ++i) {
+            var ch = s1.charAt(i);
+
+            if (!map.containsKey(ch))
+                map.put(ch, 0);
+            else
+                map.put(ch, map.get(ch) + 1);
+        }
+
+        for (var i = 0; i < len2; ++i) {
+            var ch = s2.charAt(i);
+            int count;
+
+            if (!map.containsKey(ch) || (count = map.get(ch)) == 0)
+                return false;
+
+            map.put(ch, count - 1);
+        }
+
+        for (var val : map.values())
+            if (val != 0)
+                return false;
+
+        return true;
+    }
+
     public static String capitalize(String s)
     {
         return s.isEmpty() ? "" : Character.toUpperCase(s.charAt(0)) + s.substring(1).toLowerCase();

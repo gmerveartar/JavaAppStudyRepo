@@ -54,6 +54,6 @@ package org.csystem.collection;
     @Override
     private int compareTo()
     {
-        return m_list
+        throw new UnsupportedOperationException("TODO");
     }
  }

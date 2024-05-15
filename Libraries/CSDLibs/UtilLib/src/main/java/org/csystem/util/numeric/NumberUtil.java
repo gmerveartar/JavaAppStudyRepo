@@ -1,7 +1,7 @@
 /*-------------------------------------------------------------
 	FILE		: NumberUtil.java
 	AUTHOR		: Java-Nov-2023 Group
-	Last UPDATE	: 11th Mar 2024
+	Last UPDATE	: 14th May 2024
 	
 	Utility class for numeric operations
 	
@@ -18,6 +18,9 @@ import java.util.NoSuchElementException;
 import java.util.OptionalDouble;
 import java.util.OptionalInt;
 import java.util.OptionalLong;
+import java.util.stream.IntStream;
+import java.util.stream.LongStream;
+import java.util.stream.Stream;
 
 import static java.lang.Math.*;
 
@@ -82,12 +85,7 @@ public final class NumberUtil {
 
     public static int calculateDigitalRoot(int val)
     {
-        var  root = abs(val);
-
-        while ((root = sumDigits(root)) > 9)
-            ;
-
-        return root;
+        return IntStream.iterate(abs(val),NumberUtil::sumDigits).filter(v -> v <= 9).findFirst().getAsInt();
     }
 
     public static int countDigits(long val)
@@ -112,36 +110,18 @@ public final class NumberUtil {
 
     public static long digitsFactorialSum(int n)
     {
-        var total = 0L;
-
-        while (n != 0) {
-            total += factorial(n % 10);
-            n /= 10;
-        }
-
-        return total;
+        return LongStream.iterate(abs(n), v -> v != 0, v -> v / 10).reduce(0, (r, v) -> r + factorial((int)(v % 10)));
     }
 
     public static long factorial(int n)
     {
-        var result = 1L;
-
-        for (var i = 2L; i <= n; ++i)
-            result *= i;
-
-        return result;
+        return LongStream.rangeClosed(2, n).reduce(1, (r, i) -> r * i);
     }
-
 
     public static BigInteger factorialBigInteger(int n)
     {
-        var result = BigInteger.ONE;
-        var bound = BigInteger.valueOf(n);
-
-        for (var i = BigInteger.TWO; i.compareTo(bound) <= 0; i = i.add(BigInteger.ONE))
-            result = result.multiply(i);
-
-        return result;
+        return Stream.iterate(BigInteger.TWO, i -> i.compareTo(BigInteger.valueOf(n)) <= 0, i -> i .add(BigInteger.ONE))
+                .reduce(BigInteger.ONE, BigInteger::multiply);
     }
 
     public static int fibonacciNumber(int n)
@@ -164,33 +144,16 @@ public final class NumberUtil {
 
     public static int getDigitsPowSum(int val)
     {
-        var n = countDigits(val);
-        var result = 0;
-
-        while (val != 0) {
-            result += (int)pow(val % 10, n);
-            val /= 10;
-        }
-
-        return result;
+        return IntStream.iterate(val, v -> v != 0, v -> v / 10).reduce(0, (r, v) -> r + (int)pow(v % 10, countDigits(val)));
     }
 
     public static long getPrime(int n)
     {
-        var count = 0;
-        var val = 2L;
-
-        while (true) {
-            if (isPrime(val))
-                ++count;
-
-            if (count == n)
-                break;
-
-            ++val;
-        }
-
-        return val;
+        return LongStream.iterate(2, c -> c + 1)
+                .filter(NumberUtil::isPrime)
+                .limit(n)
+                .max()
+                .getAsLong();
     }
 
     public static BigInteger getPrime(BigInteger n)
@@ -205,22 +168,6 @@ public final class NumberUtil {
             val = val.add(BigInteger.ONE);
         }
         return val;
-    }
-    public static int hardyRamanujanCount(int n)
-    {
-        int count = 0;
-
-        EXIT_LOOP:
-        for (var a = 1; a * a * a < n; ++a)
-            for (var b = a + 1; a * a * a + b * b * b <= n; ++b)
-                if (a * a * a + b * b * b == n) {
-                    if (++count == 2)
-                        break EXIT_LOOP;
-
-                    ++a;
-                }
-
-        return count;
     }
 
     public static int indexOfPrime(long val)
@@ -258,21 +205,6 @@ public final class NumberUtil {
         return val >= 0 && getDigitsPowSum(val) == val;
     }
 
-    public static boolean isDecimalHarshad(int val)
-    {
-        return val > 0 && val % sumDigits(val) == 0;
-    }
-
-    public static boolean isFactorian(int n)
-    {
-        return n > 0 && digitsFactorialSum(n) == n;
-    }
-
-    public static boolean isHardyRamanujan(int n)
-    {
-        return n > 0 && hardyRamanujanCount(n) == 2;
-    }
-
     public static boolean isPerfect(int val)
     {
         return sumFactors(val) == val;
@@ -299,11 +231,8 @@ public final class NumberUtil {
         if (val % 7 == 0)
             return val == 7;
 
-        for (var i = 11L; i * i <= val; i += 2)
-            if (val % i == 0)
-                return false;
-
-        return true;
+        return LongStream.iterate(11, i -> i * i <= val, i -> i + 2)
+                .noneMatch(i -> val % i == 0);
     }
     public static boolean isPrime(BigInteger val)
     {
@@ -322,11 +251,8 @@ public final class NumberUtil {
         if (val.remainder(SEVEN).equals(BigInteger.ZERO))
             return val.equals(SEVEN);
 
-        for (var i = ELEVEN; i.multiply(i).compareTo(val) <= 0; i = i.add(BigInteger.TWO))
-            if (val.remainder(i).equals(BigInteger.ZERO))
-                return false;
-
-        return true;
+        return Stream.iterate(ELEVEN, i -> i.multiply(i).compareTo(val) <= 0, i -> i.add(BigInteger.TWO))
+                .noneMatch(i -> val.remainder(i).equals(BigInteger.ZERO));
     }
     public static boolean isPrimeX(long val)
     {

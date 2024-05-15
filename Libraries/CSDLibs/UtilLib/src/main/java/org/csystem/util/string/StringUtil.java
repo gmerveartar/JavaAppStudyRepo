@@ -1,7 +1,7 @@
 /*-------------------------------------------------------------
 	FILE		: StringUtil.java
 	AUTHOR		: Java-Nov-2023 Group
-	Last UPDATE	: 7th May 2024
+	Last UPDATE	: 14th May 2024
 
 	Utility class for string operations
 
@@ -16,12 +16,14 @@ import java.util.HashSet;
 import java.util.random.RandomGenerator;
 
 public final class StringUtil {
-    private static final String LETTERS_EN;
-    private static final String LETTERS_TR;
-    private static final String CAPITAL_LETTERS_EN;
-    private static final String CAPITAL_LETTERS_TR;
-    private static final String ALL_LETTERS_TR;
-    private static final String ALL_LETTERS_EN;
+    private StringUtil()
+    {}
+    public static final String LETTERS_EN;
+    public static final String LETTERS_TR;
+    public static final String CAPITAL_LETTERS_EN;
+    public static final String CAPITAL_LETTERS_TR;
+    public static final String ALL_LETTERS_TR;
+    public static final String ALL_LETTERS_EN;
 
     static {
         LETTERS_EN = "abcdefghijklmnopqrstuvwxyz";
@@ -31,9 +33,6 @@ public final class StringUtil {
         ALL_LETTERS_TR = LETTERS_TR + CAPITAL_LETTERS_TR;
         ALL_LETTERS_EN = LETTERS_EN + CAPITAL_LETTERS_EN;
     }
-
-    private StringUtil()
-    {}
     public static boolean areAllUnique(String s)
     {
         var set = new HashSet<Character>();
@@ -50,7 +49,7 @@ public final class StringUtil {
         var len1 = s1.length();
         var len2 = s2.length();
 
-        if (len1 != len2)
+        if (isBlank(s1) || isBlank(s2) || len1 != len2)
             return false;
 
         var map = new HashMap<Character, Integer>();
@@ -58,7 +57,7 @@ public final class StringUtil {
             var ch = s1.charAt(i);
 
             if (!map.containsKey(ch))
-                map.put(ch, 0);
+                map.put(ch, 1);
             else
                 map.put(ch, map.get(ch) + 1);
         }
@@ -240,7 +239,6 @@ public final class StringUtil {
         return result;
     }
 
-
     public static String getFirstPangramTR(String s)
     {
         var result = s;
@@ -350,6 +348,20 @@ public final class StringUtil {
         }
 
         return count1 == count2;
+    }
+
+    public static boolean isBlank(CharSequence s)
+    {
+        var len = s.length();
+
+        for (var i = 0; i < len; ++i)
+            if (!Character.isWhitespace(s.charAt(i)))
+                return false;
+        return true;
+    }
+    public static boolean isNullOrBlank(CharSequence s)
+    {
+        return s == null || isBlank(s);
     }
 
     public static boolean isIdentifier(String s)
@@ -524,27 +536,6 @@ public final class StringUtil {
         }
 
         return sb.toString();
-    }
-
-    public static String trimLeading(String s)
-    {
-        int i;
-        var len = s.length();
-
-        for (i = 0; i < len && Character.isWhitespace(s.charAt(i)); ++i)
-            ;
-
-        return s.substring(i);
-    }
-
-    public static String trimTrailing(String s)
-    {
-        int i;
-
-        for (i = s.length() - 1; i >= 0 && Character.isWhitespace(s.charAt(i)); --i)
-            ;
-
-        return s.substring(0, i + 1);
     }
 
     public static String wrapWith(String s, char c)

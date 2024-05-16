@@ -1,8 +1,8 @@
 package org.csystem;
 
 
-import java.util.TreeSet;
 import java.util.random.RandomGenerator;
+import java.util.stream.IntStream;
 
 public class NumericLottery {
     private final RandomGenerator m_randomGenerator;
@@ -14,14 +14,15 @@ public class NumericLottery {
 
     public int [] getNumbers()
     {
-        var numbers = new int[6];
-        var set = new TreeSet<Integer>();
+        return IntStream.generate(() -> m_randomGenerator.nextInt(1, 50))
+                .distinct().limit(6).sorted().toArray();
+    }
 
-        while (set.size() != 6)
-            set.add(m_randomGenerator.nextInt(1, 50));
+    public int [][] getNumbers(int count)
+    {
+        var numbers = new int[count][];
 
-       for (var i = 0; i < 6; ++i)
-           numbers[i] = set.pollFirst();
+        IntStream.range(0, count).forEach(i -> numbers[i] = getNumbers());
 
         return numbers;
     }

@@ -1,7 +1,7 @@
 /*-------------------------------------------------------------
 	FILE		: ArrayUtil.java
 	AUTHOR		: Java-Nov-2023 Group
-	Last UPDATE	: 7 th May 2024
+	Last UPDATE	: 16th May 2024
 
 	Utility class for array operations
 
@@ -12,9 +12,11 @@ package org.csystem.util.array;
 
 
 import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashSet;
 import java.util.random.RandomGenerator;
+import java.util.stream.DoubleStream;
+import java.util.stream.IntStream;
+import java.util.stream.LongStream;
+import java.util.stream.Stream;
 
 
 public final class ArrayUtil {
@@ -72,22 +74,16 @@ public final class ArrayUtil {
 
     public static void addBy(int [] a, int val)
     {
-        for (var i = 0; i < a.length; ++i)
-            a[i] += val;
+        IntStream.range(0, a.length).forEach(i -> a[i] += val);
     }
 
     public static void addBy(int [][] a, int val)
     {
-        for (var array : a)
-            addBy(array, val);
+        Arrays.stream(a).forEach(array -> addBy(array, val));
     }
     public static <T> boolean areAllUnique(T [] a)
     {
-        var set = new HashSet<T>();
-
-        Collections.addAll(set, a);
-
-        return set.size() == a.length;
+        return Stream.of(a).distinct().count() == a.length;
     }
 
     public static boolean areAllUnique(int [] a)
@@ -146,11 +142,17 @@ public final class ArrayUtil {
 
     public static int [] generateRandomArray(RandomGenerator randomGenerator, int count, int min, int bound)
     {
-        var a = new int[count];
+        return IntStream.generate(() -> randomGenerator.nextInt(min, bound)).limit(count).toArray();
+    }
 
-        fillRandomArray(randomGenerator, a, min, bound);
+    public static long [] generateRandomArray(RandomGenerator randomGenerator, int count, long min, long bound)
+    {
+        return LongStream.generate(() -> randomGenerator.nextLong(min, bound)).limit(count).toArray();
+    }
 
-        return a;
+    public static double [] generateRandomArray(RandomGenerator randomGenerator, int count, double min, double bound)
+    {
+        return DoubleStream.generate(() -> randomGenerator.nextDouble(min, bound)).limit(count).toArray();
     }
 
     public static int [] histogramData(int [] a, int n)
@@ -165,22 +167,12 @@ public final class ArrayUtil {
 
     public static int max(int [] a)
     {
-        var result = a[0];
-
-        for (var i = 1; i < a.length; ++i)
-            result = Math.max(result, a[i]);
-
-        return result;
+        return Arrays.stream(a).max().getAsInt();
     }
 
     public static int min(int [] a)
     {
-        var result = a[0];
-
-        for (var i = 1; i < a.length; ++i)
-            result = Math.min(result, a[i]);
-
-        return result;
+        return Arrays.stream(a).min().getAsInt();
     }
 
     public static void multiplyBy(int [] a, int val)

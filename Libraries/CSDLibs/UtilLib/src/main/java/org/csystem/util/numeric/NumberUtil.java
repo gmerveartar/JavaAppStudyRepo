@@ -1,7 +1,7 @@
 /*-------------------------------------------------------------
 	FILE		: NumberUtil.java
 	AUTHOR		: Java-Nov-2023 Group
-	Last UPDATE	: 14th May 2024
+	Last UPDATE	: 15th May 2024
 	
 	Utility class for numeric operations
 	
@@ -234,6 +234,12 @@ public final class NumberUtil {
         return LongStream.iterate(11, i -> i * i <= val, i -> i + 2)
                 .noneMatch(i -> val % i == 0);
     }
+
+    public static boolean isNotPrime(long val)
+    {
+        return !isPrime(val);
+    }
+
     public static boolean isPrime(BigInteger val)
     {
         if (val.compareTo(BigInteger.ONE) <= 0)
@@ -366,26 +372,13 @@ public final class NumberUtil {
 
     public static int reverse(int val)
     {
-        var result = 0;
-
-        while (val != 0) {
-            result = result * 10 + val % 10;
-            val /= 10;
-        }
-
-        return result;
+        return IntStream.iterate(val, v -> v != 0, v -> v / 10).reduce(0, (r, v) -> r * 10 + v % 10);
     }
 
     public static BigInteger reverse(BigInteger val)
     {
-        var result = BigInteger.ZERO;
-
-        while (!val.equals(BigInteger.ZERO)) {
-            result = result.multiply(BigInteger.TEN).add(val.remainder(BigInteger.TEN));
-            val = val.divide(BigInteger.TEN);
-        }
-
-        return result;
+        return Stream.iterate(val, v -> !v.equals(BigInteger.ZERO), v -> v.divide(BigInteger.TEN))
+                .reduce(BigInteger.ZERO, (r, v) -> r.multiply(BigInteger.TEN).add(v.remainder(BigInteger.TEN)));
     }
 
     public static int sumDigits(long val)

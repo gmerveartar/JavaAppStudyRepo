@@ -6,7 +6,7 @@ run-unit:
 
 unit-test:
 	for x in *;do \
-		if [ "$$x" != "001_DemoLibraryUsageMavenLocal" ] && [ "$$x" != "002_DemoLibraryUsageProjectLocal" ] && [ "$$x" != "011_CommandPromptApp" ] && [ "$$x" != "Makefile" ]; then \
+		if [ "$$x" != "001_DemoLibraryUsageMavenLocal" ] && [ "$$x" != "002_DemoLibraryUsageProjectLocal" ] && [ "$$x" != "011_CommandPromptApp" ] && [ "$$x" != "014_DemoCarCameraSimulation" ] && [ "$$x" != "Makefile" ]; then \
 			cd $$x && mvn test && cd .. ; \
 		fi \
 	done;

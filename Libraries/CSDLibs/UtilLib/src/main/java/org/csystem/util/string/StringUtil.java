@@ -1,7 +1,7 @@
 /*-------------------------------------------------------------
 	FILE		: StringUtil.java
 	AUTHOR		: Java-Nov-2023 Group
-	Last UPDATE	: 14th May 2024
+	Last UPDATE	: 23th May 2024
 
 	Utility class for string operations
 
@@ -13,6 +13,7 @@ package org.csystem.util.string;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Locale;
 import java.util.random.RandomGenerator;
 
 public final class StringUtil {
@@ -96,6 +97,15 @@ public final class StringUtil {
         }
 
         return sb.toString();
+    }
+    public static boolean containsIgnoreCase(String str, String s, Locale locale)
+    {
+        return str.toLowerCase(locale).contains(s.toLowerCase(locale));
+    }
+
+    public static boolean containsIgnoreCase(String str, String s)
+    {
+        return containsIgnoreCase(str, s, Locale.getDefault());
     }
 
     public static int countString(String s1, String s2)

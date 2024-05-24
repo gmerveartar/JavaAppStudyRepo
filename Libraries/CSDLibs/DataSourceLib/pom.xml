@@ -13,6 +13,14 @@
 	<version>11.1.0</version>
 	<name>org-csystem-util-datasource</name>
 
+<dependencies>
+	<dependency>
+		<groupId>org.csystem</groupId>
+		<artifactId>org-csystem-util</artifactId>
+		<version>13.0.0</version>
+	</dependency>
+</dependencies>
+
 
 	<build>
 		<plugins>

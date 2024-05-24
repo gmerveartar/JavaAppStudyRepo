@@ -1,7 +1,7 @@
 /*-------------------------------------------------------------
 	FILE		: ArrayUtil.java
 	AUTHOR		: Java-Nov-2023 Group
-	Last UPDATE	: 16th May 2024
+	Last UPDATE	: 22th May 2024
 
 	Utility class for array operations
 
@@ -12,6 +12,8 @@ package org.csystem.util.array;
 
 
 import java.util.Arrays;
+import java.util.Collection;
+import java.util.function.Consumer;
 import java.util.random.RandomGenerator;
 import java.util.stream.DoubleStream;
 import java.util.stream.IntStream;
@@ -113,20 +115,6 @@ public final class ArrayUtil {
             bubbleSortAscending(a);
     }
 
-    public static void drawHistogram(int [] data, int n, char ch)
-    {
-        var maxVal = max(data);
-
-        for (var val : data) {
-            var count = (int)Math.floor(val * n / (double)maxVal);
-
-            while (count-- > 0)
-                System.out.print(ch);
-
-            System.out.println();
-        }
-    }
-
     public static void fillRandomArray(RandomGenerator randomGenerator, int [][] a, int min, int bound)
     {
         for (var i = 0; i < a.length; ++i)
@@ -138,6 +126,10 @@ public final class ArrayUtil {
     {
         for (var i = 0; i < a.length; ++i)
             a[i] = randomGenerator.nextInt(min, bound);
+    }
+    public static <T> void forEach(T[] a, Consumer<? super T> consumer)
+    {
+        Arrays.stream(a).forEach(consumer);
     }
 
     public static int [] generateRandomArray(RandomGenerator randomGenerator, int count, int min, int bound)
@@ -159,8 +151,7 @@ public final class ArrayUtil {
     {
         var counts = new int[n + 1];
 
-        for (var val : a)
-            ++counts[val];
+        Arrays.stream(a).forEach(v -> ++counts[v]);
 
         return counts;
     }
@@ -177,14 +168,12 @@ public final class ArrayUtil {
 
     public static void multiplyBy(int [] a, int val)
     {
-        for (var i = 0; i < a.length; ++i)
-            a[i] *= val;
+        IntStream.range(0, a.length).forEach(i -> a[i] *= val);
     }
 
     public static void multiplyBy(int [][] a, int val)
     {
-        for (var array : a)
-            multiplyBy(array, val);
+        Arrays.stream(a).forEach(array -> multiplyBy(array, val));
     }
 
     public static int partitionByThresholdGreater(int [] a, int threshold)
@@ -238,22 +227,18 @@ public final class ArrayUtil {
 
     public static void print(int [] a, String sep, String end)
     {
-        for (var val : a)
-            System.out.printf("%d%s", val, sep);
-
+        Arrays.stream(a).forEach(v -> System.out.printf("%d%s", v, sep));
         System.out.print(end);
     }
 
     public static void print(double [] a)
     {
-        for (var val : a)
-            System.out.printf("%f%n", val);
+        Arrays.stream(a).forEach(v -> System.out.printf("%f%n", v));
     }
 
     public static void print(long [] a)
     {
-        for (var val : a)
-            System.out.printf("%d%n", val);
+        Arrays.stream(a).forEach(v -> System.out.printf("%d%n", v));
     }
 
     public static void print(int [][] a)
@@ -263,8 +248,7 @@ public final class ArrayUtil {
 
     public static void print(int n, int [][] a)
     {
-        for (var array : a)
-            print(n, array);
+        Arrays.stream(a).forEach(array -> print(n, array));
     }
 
     public static void print(String [] str)
@@ -274,9 +258,7 @@ public final class ArrayUtil {
 
     public static void print(String [] str, String sep, String end)
     {
-        for (var s : str)
-            System.out.printf("%s%s", s, sep);
-
+        Arrays.stream(str).forEach(s -> System.out.printf("%s%s", s, sep));
         System.out.print(end);
     }
 
@@ -323,12 +305,7 @@ public final class ArrayUtil {
 
     public static int sum(int [] a)
     {
-        var total = 0;
-
-        for (var val : a)
-            total += val;
-
-        return total;
+        return Arrays.stream(a).sum();
     }
 
     public static void swap(int [] a, int i, int k)

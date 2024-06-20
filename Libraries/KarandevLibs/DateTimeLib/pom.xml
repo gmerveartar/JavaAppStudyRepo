@@ -11,10 +11,16 @@
         <version>1.0.0</version>
     </parent>
 
-    <artifactId>com-karandev-util-console</artifactId>
-    <version>11.2.0</version>
-    <name>com-karandev-util-console</name>
+    <artifactId>com-karandev-spring-datetime</artifactId>
+    <version>1.0.0</version>
+    <name>com-karandev-spring-datetime</name>
 
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter</artifactId>
+        </dependency>
+    </dependencies>
     <build>
         <plugins>
             <plugin>

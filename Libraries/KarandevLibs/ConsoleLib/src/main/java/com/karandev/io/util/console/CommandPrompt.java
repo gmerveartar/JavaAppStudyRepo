@@ -10,8 +10,8 @@
 -----------------------------------------------------------------------*/
 package com.karandev.io.util.console;
 
-import com.karandev.io.util.console.annotation.Command;
-import com.karandev.io.util.console.annotation.ErrorCommand;
+import com.karandev.datetime.Command;
+import com.karandev.datetime.ErrorCommand;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;

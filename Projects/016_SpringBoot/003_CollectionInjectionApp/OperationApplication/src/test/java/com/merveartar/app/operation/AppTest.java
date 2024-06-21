@@ -1,13 +1,11 @@
-package org.csystem.app;
+package com.merveartar.app.operation;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class ApplicationMavenApplicationTests {
+class AppTest {
 
-	@Test
-	void contextLoads() {
-	}
+
 
 }

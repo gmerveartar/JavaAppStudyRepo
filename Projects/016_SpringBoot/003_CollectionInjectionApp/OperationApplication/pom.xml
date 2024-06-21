@@ -46,6 +46,12 @@
 		</dependency>
 
 		<dependency>
+			<groupId>org.csystem</groupId>
+			<artifactId>com-karandev-spring-datetime</artifactId>
+			<version>1.0.0</version>
+		</dependency>
+
+		<dependency>
 			<groupId>com.karandev</groupId>
 			<artifactId>com-karandev-util-console</artifactId>
 			<version>11.2.0</version>

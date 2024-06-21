@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class AddWithValueOperation implements IIntOperator {
-    @Value("$(com.merveartar.value:0)")
+    @Value("${com.merveartar.value:0}")
     private int m_value;
 
     @Override

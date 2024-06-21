@@ -4,16 +4,16 @@ import com.merveartar.library.operation.IIntOperator;
 import org.springframework.stereotype.Component;
 
 @Component
-public class MultiplyOperation implements IIntOperator {
+public class SubtractOperation implements IIntOperator {
     @Override
     public boolean isValid(char op)
     {
-        return op == '*';
+        return op == '-';
     }
 
     @Override
     public int applyAsInt(int a, int b)
     {
-        return a * b;
+        return a - b;
     }
 }

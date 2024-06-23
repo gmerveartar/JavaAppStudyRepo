@@ -5,8 +5,13 @@ run-unit:
 	docker run -it --rm --name="test_docker" test_docker bash
 
 unit-test:
-	for x in *; do \
-		{ cd $$x && mvn test && cd ..} || { echo "Failed at $${x}" } \
+	for x in * \
+	do \
+		{ \
+			cd $$x && mvn test && cd .. \
+		} || { \
+			echo "Failed at $${x}"  \
+		} \
 	done;
 
 unit-tests-folder:

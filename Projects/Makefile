@@ -7,7 +7,9 @@ run-unit:
 unit-test:
 	for x in *;do \
 		{
-			cd $$x && mvn test && cd .. ; \
+			cd $$x
+			mvn test
+			cd ..
 		} || {
 			echo "Failed at $${x}"
 		}

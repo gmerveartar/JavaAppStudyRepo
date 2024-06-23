@@ -5,12 +5,12 @@ run-unit:
 	docker run -it --rm --name="test_docker" test_docker bash
 
 unit-test:
-	for x in *; do \
-		cd $$x &&\
-		if mvn test; then \
-			echo "Ran Successfully" \
-		fi && \
-		cd .. \
+	for x in *;do \
+		if cd $$x && mvn test; then \
+			echo "Ran Succesfully" && cd .. ; \
+		else \
+			echo "Failed At $$x" & cd ..; \
+		fi \
 	done;
 
 unit-tests-folder:

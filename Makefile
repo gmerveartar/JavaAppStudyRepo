@@ -9,8 +9,6 @@ unit-test:
 		cd $$x &&\
 		if mvn test; then \
 			echo "Ran Successfully" \
-		else \
-			echo "Failed At $$x" \
 		fi && \
 		cd .. \
 	done;

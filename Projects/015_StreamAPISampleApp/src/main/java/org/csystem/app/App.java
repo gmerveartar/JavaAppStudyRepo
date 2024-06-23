@@ -8,6 +8,6 @@ public class App {
         //  StreamAPIProductPriceMinMaxFilterApp.run(args);
         //  StreamAPIStaffFilterApp.run(args);
         //  StreamAPIStaffFilterCountApp.run(args);
-          StreamAPIStaffFilterReduceApp.run(args);
+        //  StreamAPIStaffFilterReduceApp.run(args);
     }
 }

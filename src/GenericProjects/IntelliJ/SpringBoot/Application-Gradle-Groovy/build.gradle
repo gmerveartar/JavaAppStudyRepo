@@ -5,7 +5,7 @@ plugins {
 }
 
 group = 'org.csystem'
-version = '0.0.1-SNAPSHOT'
+version = '1.0.0'
 
 java {
 	sourceCompatibility = '21'
@@ -13,10 +13,19 @@ java {
 
 repositories {
 	mavenCentral()
+	mavenLocal()
+	maven {
+		url 'https://raw.github.com/gmerveartar/DemoMavenRepo/main'
+	}
 }
 
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter'
+	implementation 'com.karandev:com-karandev-util-console:11.2.0'
+
+	compileOnly 'org.projectlombok:lombok:1.18.32'
+	annotationProcessor 'org.projectlombok:lombok'
+
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 }

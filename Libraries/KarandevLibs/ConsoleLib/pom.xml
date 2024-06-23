@@ -13,7 +13,7 @@
 
     <artifactId>com-karandev-util-console</artifactId>
     <version>11.2.0</version>
-    <name>ConsoleLib</name>
+    <name>com-karandev-util-console</name>
 
     <build>
         <plugins>

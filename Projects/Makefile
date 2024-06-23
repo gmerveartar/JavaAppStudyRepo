@@ -7,7 +7,11 @@ run-unit:
 unit-test:
 	for x in * \
 	do \
-		{ cd $$x && mvn test && cd ..} || { echo "Failed at $${x}" } \
+		{ \
+			cd $$x && mvn test && cd .. \
+		} || { \
+			echo "Failed at $${x}"  \
+		} \
 	done;
 
 unit-tests-folder:

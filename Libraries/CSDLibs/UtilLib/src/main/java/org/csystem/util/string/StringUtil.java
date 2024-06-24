@@ -1,7 +1,7 @@
 /*-------------------------------------------------------------
 	FILE		: StringUtil.java
 	AUTHOR		: Java-Nov-2023 Group
-	Last UPDATE	: 1st Dec 2023
+	Last UPDATE	: 23th May 2024
 
 	Utility class for string operations
 
@@ -11,15 +11,20 @@
 package org.csystem.util.string;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Locale;
 import java.util.random.RandomGenerator;
 
 public final class StringUtil {
-    private static final String LETTERS_EN;
-    private static final String LETTERS_TR;
-    private static final String CAPITAL_LETTERS_EN;
-    private static final String CAPITAL_LETTERS_TR;
-    private static final String ALL_LETTERS_TR;
-    private static final String ALL_LETTERS_EN;
+    private StringUtil()
+    {}
+    public static final String LETTERS_EN;
+    public static final String LETTERS_TR;
+    public static final String CAPITAL_LETTERS_EN;
+    public static final String CAPITAL_LETTERS_TR;
+    public static final String ALL_LETTERS_TR;
+    public static final String ALL_LETTERS_EN;
 
     static {
         LETTERS_EN = "abcdefghijklmnopqrstuvwxyz";
@@ -29,9 +34,52 @@ public final class StringUtil {
         ALL_LETTERS_TR = LETTERS_TR + CAPITAL_LETTERS_TR;
         ALL_LETTERS_EN = LETTERS_EN + CAPITAL_LETTERS_EN;
     }
+    public static boolean areAllUnique(String s)
+    {
+        var set = new HashSet<Character>();
 
-    private StringUtil()
-    {}
+        for (var i = 0; i < s.length(); ++i)
+            set.add(s.charAt(i));
+
+        return s.length() == set.size();
+
+    }
+
+    public static boolean areAnagram(CharSequence s1, CharSequence s2)
+    {
+        var len1 = s1.length();
+        var len2 = s2.length();
+
+        if (isBlank(s1) || isBlank(s2) || len1 != len2)
+            return false;
+
+        var map = new HashMap<Character, Integer>();
+        for (var i = 0; i < len1; ++i) {
+            var ch = s1.charAt(i);
+
+            if (!map.containsKey(ch))
+                map.put(ch, 1);
+            else
+                map.put(ch, map.get(ch) + 1);
+        }
+
+        for (var i = 0; i < len2; ++i) {
+            var ch = s2.charAt(i);
+            int count;
+
+            if (!map.containsKey(ch) || (count = map.get(ch)) == 0)
+                return false;
+
+            map.put(ch, count - 1);
+        }
+
+        for (var val : map.values())
+            if (val != 0)
+                return false;
+
+        return true;
+    }
+
     public static String capitalize(String s)
     {
         return s.isEmpty() ? "" : Character.toUpperCase(s.charAt(0)) + s.substring(1).toLowerCase();
@@ -49,6 +97,15 @@ public final class StringUtil {
         }
 
         return sb.toString();
+    }
+    public static boolean containsIgnoreCase(String str, String s, Locale locale)
+    {
+        return str.toLowerCase(locale).contains(s.toLowerCase(locale));
+    }
+
+    public static boolean containsIgnoreCase(String str, String s)
+    {
+        return containsIgnoreCase(str, s, Locale.getDefault());
     }
 
     public static int countString(String s1, String s2)
@@ -192,7 +249,6 @@ public final class StringUtil {
         return result;
     }
 
-
     public static String getFirstPangramTR(String s)
     {
         var result = s;
@@ -302,6 +358,20 @@ public final class StringUtil {
         }
 
         return count1 == count2;
+    }
+
+    public static boolean isBlank(CharSequence s)
+    {
+        var len = s.length();
+
+        for (var i = 0; i < len; ++i)
+            if (!Character.isWhitespace(s.charAt(i)))
+                return false;
+        return true;
+    }
+    public static boolean isNullOrBlank(CharSequence s)
+    {
+        return s == null || isBlank(s);
     }
 
     public static boolean isIdentifier(String s)
@@ -476,27 +546,6 @@ public final class StringUtil {
         }
 
         return sb.toString();
-    }
-
-    public static String trimLeading(String s)
-    {
-        int i;
-        var len = s.length();
-
-        for (i = 0; i < len && Character.isWhitespace(s.charAt(i)); ++i)
-            ;
-
-        return s.substring(i);
-    }
-
-    public static String trimTrailing(String s)
-    {
-        int i;
-
-        for (i = s.length() - 1; i >= 0 && Character.isWhitespace(s.charAt(i)); --i)
-            ;
-
-        return s.substring(0, i + 1);
     }
 
     public static String wrapWith(String s, char c)

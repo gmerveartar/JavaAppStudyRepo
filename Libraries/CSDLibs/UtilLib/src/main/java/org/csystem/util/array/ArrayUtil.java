@@ -1,7 +1,7 @@
 /*-------------------------------------------------------------
 	FILE		: ArrayUtil.java
 	AUTHOR		: Java-Nov-2023 Group
-	Last UPDATE	: 1st Dec 2023
+	Last UPDATE	: 24th May 2024
 
 	Utility class for array operations
 
@@ -11,7 +11,15 @@
 package org.csystem.util.array;
 
 
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.function.Consumer;
 import java.util.random.RandomGenerator;
+import java.util.stream.DoubleStream;
+import java.util.stream.IntStream;
+import java.util.stream.LongStream;
+import java.util.stream.Stream;
+
 
 public final class ArrayUtil {
     private ArrayUtil()
@@ -65,19 +73,36 @@ public final class ArrayUtil {
         }
     }
 
+
     public static void addBy(int [] a, int val)
     {
-        for (var i = 0; i < a.length; ++i)
-            a[i] += val;
+        IntStream.range(0, a.length).forEach(i -> a[i] += val);
     }
 
     public static void addBy(int [][] a, int val)
     {
-        for (var array : a)
-            addBy(array, val);
+        Arrays.stream(a).forEach(array -> addBy(array, val));
+    }
+    public static <T> boolean areAllUnique(T [] a)
+    {
+        return Stream.of(a).distinct().count() == a.length;
     }
 
-    public static void bubbleSort(int [] a)
+    public static boolean areAllUnique(int [] a)
+    {
+        return Arrays.stream(a).distinct().count() == a.length;
+    }
+    public static boolean areAllUnique(long [] a)
+    {
+        return Arrays.stream(a).distinct().count() == a.length;
+
+    }
+    public static boolean areAllUnique(double [] a)
+    {
+        return Arrays.stream(a).distinct().count() == a.length;
+
+    }
+     public static void bubbleSort(int [] a)
     {
         bubbleSort(a, false);
     }
@@ -88,20 +113,6 @@ public final class ArrayUtil {
             bubbleSortDescending(a);
         else
             bubbleSortAscending(a);
-    }
-
-    public static void drawHistogram(int [] data, int n, char ch)
-    {
-        var maxVal = max(data);
-
-        for (var val : data) {
-            var count = (int)Math.floor(val * n / (double)maxVal);
-
-            while (count-- > 0)
-                System.out.print(ch);
-
-            System.out.println();
-        }
     }
 
     public static void fillRandomArray(RandomGenerator randomGenerator, int [][] a, int min, int bound)
@@ -116,149 +127,43 @@ public final class ArrayUtil {
         for (var i = 0; i < a.length; ++i)
             a[i] = randomGenerator.nextInt(min, bound);
     }
+    public static <T> void forEach(T[] a, Consumer<? super T> consumer)
+    {
+        Arrays.stream(a).forEach(consumer);
+    }
 
     public static int [] generateRandomArray(RandomGenerator randomGenerator, int count, int min, int bound)
     {
-        var a = new int[count];
+        return IntStream.generate(() -> randomGenerator.nextInt(min, bound)).limit(count).toArray();
+    }
 
-        fillRandomArray(randomGenerator, a, min, bound);
+    public static long [] generateRandomArray(RandomGenerator randomGenerator, int count, long min, long bound)
+    {
+        return LongStream.generate(() -> randomGenerator.nextLong(min, bound)).limit(count).toArray();
+    }
 
-        return a;
+    public static double [] generateRandomArray(RandomGenerator randomGenerator, int count, double min, double bound)
+    {
+        return DoubleStream.generate(() -> randomGenerator.nextDouble(min, bound)).limit(count).toArray();
     }
 
     public static int [] histogramData(int [] a, int n)
     {
         var counts = new int[n + 1];
 
-        for (var val : a)
-            ++counts[val];
+        Arrays.stream(a).forEach(v -> ++counts[v]);
 
         return counts;
     }
 
-    public static int max(int [] a)
-    {
-        var result = a[0];
-
-        for (var i = 1; i < a.length; ++i)
-            result = Math.max(result, a[i]);
-
-        return result;
-    }
-
-    public static int min(int [] a)
-    {
-        var result = a[0];
-
-        for (var i = 1; i < a.length; ++i)
-            result = Math.min(result, a[i]);
-
-        return result;
-    }
-
     public static void multiplyBy(int [] a, int val)
     {
-        for (var i = 0; i < a.length; ++i)
-            a[i] *= val;
+        IntStream.range(0, a.length).forEach(i -> a[i] *= val);
     }
 
     public static void multiplyBy(int [][] a, int val)
     {
-        for (var array : a)
-            multiplyBy(array, val);
-    }
-
-    public static int partitionByThresholdGreater(int [] a, int threshold)
-    {
-        var partitionIndex = 0;
-
-        for (; partitionIndex < a.length && a[partitionIndex] > threshold; ++partitionIndex)
-            ;
-
-        if (partitionIndex == a.length)
-            return partitionIndex;
-
-        for (var i = partitionIndex + 1; i < a.length; ++i)
-            if (a[i] < threshold)
-                swap(a, i, partitionIndex++);
-
-        return partitionIndex;
-    }
-
-    public static int partitionByThresholdLess(int [] a, int threshold)
-    {
-        var partitionIndex = 0;
-
-        for (; partitionIndex < a.length && a[partitionIndex] < threshold; ++partitionIndex)
-            ;
-
-        if (partitionIndex == a.length)
-            return partitionIndex;
-
-        for (var i = partitionIndex + 1; i < a.length; ++i)
-            if (a[i] < threshold)
-                swap(a, i, partitionIndex++);
-
-        return partitionIndex;
-    }
-
-    public static void print(int n, int [] a)
-    {
-        var fmt = String.format("%%0%dd ", n);
-
-        for (var val : a)
-            System.out.printf(fmt, val);
-
-        System.out.println();
-    }
-
-    public static void print(int [] a)
-    {
-        print(a, " ", "\n");
-    }
-
-    public static void print(int [] a, String sep, String end)
-    {
-        for (var val : a)
-            System.out.printf("%d%s", val, sep);
-
-        System.out.print(end);
-    }
-
-    public static void print(double [] a)
-    {
-        for (var val : a)
-            System.out.printf("%f%n", val);
-    }
-
-    public static void print(long [] a)
-    {
-        for (var val : a)
-            System.out.printf("%d%n", val);
-    }
-
-    public static void print(int [][] a)
-    {
-        print(1, a);
-    }
-
-    public static void print(int n, int [][] a)
-    {
-        for (var array : a)
-            print(n, array);
-    }
-
-    public static void print(String [] str)
-    {
-        print(str, "\n", "");
-    }
-
-    public static void print(String [] str, String sep, String end)
-    {
-        for (var s : str)
-            System.out.printf("%s%s", s, sep);
-
-        System.out.print(end);
+        Arrays.stream(a).forEach(array -> multiplyBy(array, val));
     }
 
     public static void reverse(int [] a)
@@ -304,12 +209,7 @@ public final class ArrayUtil {
 
     public static int sum(int [] a)
     {
-        var total = 0;
-
-        for (var val : a)
-            total += val;
-
-        return total;
+        return Arrays.stream(a).sum();
     }
 
     public static void swap(int [] a, int i, int k)

@@ -31,11 +31,15 @@ public class NetworkInfoController {
     }
 
     @GetMapping("/my") // @RequestMapping(value = "/my", method = RequestMethod.GET)
-    public NetworkInfoDTO networkInfo(@RequestParam(name = "name") String name)
+    public NetworkInfoDTO networkInfo(@RequestParam(name = "first") String firstName,
+                                      @RequestParam(name = "middle", required = false) String middleName,
+                                      @RequestParam(name = "last") String lastName)
     {
 
         var info =  NetworkInfoDTO.builder()
-                .name(name)
+                .firstName(firstName)
+                .middleName(middleName)
+                .lastName(lastName)
                 .remoteHost(m_request.getRemoteHost())
                 .localAddress(m_request.getLocalAddr())
                 .remotePort(m_request.getRemotePort())
@@ -43,7 +47,7 @@ public class NetworkInfoController {
                 .serviceRequestTime(m_localDateTime)
                 .build();
 
-        log.info("Network information request:{}", info.toString());
+        log.info("Network information request:{}", info.toString()); 
 
         return info;
     }

@@ -11,10 +11,14 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardOpenOption;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Optional;
 import java.util.random.RandomGenerator;
 import java.util.stream.Stream;
 
+
+/* Ignore asynchronous access for demo. That repository will use DBMS and DBMS synchronize the access */
 @Component
 @Scope("prototype")
 public class UserInfoRepository implements IUserInfoRepository {
@@ -33,7 +37,9 @@ public class UserInfoRepository implements IUserInfoRepository {
 
     private void savePasswords(Path path, UserInfo userInfo) throws IOException
     {
-        try (var bw = Files.newBufferedWriter(path, StandardCharsets.UTF_8, StandardOpenOption.CREATE_NEW)){
+        try (var bw = Files.newBufferedWriter(path, StandardCharsets.UTF_8, StandardOpenOption.CREATE)){
+            userInfo.setRegisterTime(LocalDateTime.now());
+            bw.write(DateTimeFormatter.ISO_DATE_TIME.format(userInfo.getRegisterTime()) + "\r\n");
             Stream.generate(() -> StringUtil.generateRandomTextEN(m_randomGenerator, userInfo.getLength()))
                     .limit(userInfo.getCount())
                     .forEach(p -> savePasswordCallBack(bw, p));
@@ -49,14 +55,14 @@ public class UserInfoRepository implements IUserInfoRepository {
     @Override
     public boolean existsById(String username)
     {
-       return m_directory.listFiles(f -> f.getName().equals(username)) != null ;
+       return m_directory.toPath().resolve(username).toFile().exists() ;
     }
 
     @Override
     public <S extends UserInfo> S save(S userInfo)
     {
         try {
-            var path = Files.createFile(Path.of(userInfo.getUsername()));
+            var path = m_directory.toPath().resolve(userInfo.getUsername());
 
             savePasswords(path, userInfo);
 
@@ -68,6 +74,12 @@ public class UserInfoRepository implements IUserInfoRepository {
         catch (Throwable ex) {
             throw new RepositoryException("UserInfoRepository.save : Problem occurred", ex);
         }
+    }
+
+    @Override
+    public Optional<UserInfo> saveIfNotExist(UserInfo userinfo)
+    {
+        return existsById(userinfo.getUsername()) ? Optional.empty() : Optional.of(save(userinfo));
     }
     //////////////////////////////////////////////////////////////////////
 

@@ -7,10 +7,10 @@ import org.springframework.context.annotation.Scope;
 import java.io.File;
 
 @Configuration
-public class FileConfig {
+public class DirectoryConfig {
     @Bean
     @Scope("prototype")
-    public File files()
+    public File directoryFile()
     {
         return new File("passwords");
     }

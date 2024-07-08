@@ -31,6 +31,6 @@ public class RepositoryException extends RuntimeException {
     {
         var cause = getCause();
         return String.format("Message: %s%s", super.getMessage(),
-                cause != null ? ", Cause : %s" + cause.getMessage() : "");
+                cause != null ? ", Cause : " + cause.getMessage() : "");
     }
 }

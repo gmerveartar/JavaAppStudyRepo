@@ -1,9 +1,9 @@
-package org.csystem.generator.password.entity;
+package org.csystem.generator.password.data.service.dto;
 
+
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 import lombok.experimental.Accessors;
-
-import java.time.LocalDateTime;
 
 @Getter
 @Setter
@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class UserInfo {
+public class UserInfoSaveDTO {
     @Accessors(prefix = "m_")
     private String m_username;
 
@@ -19,11 +19,8 @@ public class UserInfo {
     private String m_password;
 
     @Accessors(prefix = "m_")
-    private int m_count;
+    private int m_textCount;
 
     @Accessors(prefix = "m_")
-    private int m_length;
-
-    @Accessors(prefix = "m_")
-    private LocalDateTime m_registerTime;
+      private int m_textLength;
 }

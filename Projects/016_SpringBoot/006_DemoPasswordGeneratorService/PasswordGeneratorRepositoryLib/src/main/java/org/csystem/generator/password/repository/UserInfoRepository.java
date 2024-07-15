@@ -1,5 +1,6 @@
 package org.csystem.generator.password.repository;
 
+import lombok.extern.slf4j.Slf4j;
 import org.csystem.data.exception.repository.RepositoryException;
 import org.csystem.generator.password.entity.UserInfo;
 import org.csystem.util.string.StringUtil;
@@ -20,10 +21,20 @@ import java.util.stream.Stream;
 
 /* Ignore asynchronous access for demo. That repository will use DBMS and DBMS synchronize the access */
 @Component
+@Slf4j
 @Scope("prototype")
 public class UserInfoRepository implements IUserInfoRepository {
     private final File m_directory;
     private final RandomGenerator m_randomGenerator;
+
+    static {
+        try {
+            Files.createDirectories(Path.of("passwords"));
+        }
+        catch (IOException ex) {
+            log.error("Directory creation: {}", ex.getMessage());
+        }
+    }
 
     private static void savePasswordCallBack(BufferedWriter bw, String password)
     {
@@ -57,6 +68,21 @@ public class UserInfoRepository implements IUserInfoRepository {
     {
        return m_directory.toPath().resolve(username).toFile().exists() ;
     }
+
+    @Override
+    public Iterable<UserInfo> findAll()
+    {
+        try {
+            return Files.walk(m_directory.toPath()).map(p -> new UserInfo(p.getFileName().toString())).toList();
+        }
+        catch (IOException ex) {
+            throw new RepositoryException("UserInfoRepository.findAll : IO problem occurred", ex);
+        }
+        catch (Throwable ex) {
+            throw new RepositoryException("UserInfoRepository.findAll : Problem occurred", ex);
+        }
+    }
+
 
     @Override
     public <S extends UserInfo> S save(S userInfo)
@@ -115,12 +141,6 @@ public class UserInfoRepository implements IUserInfoRepository {
 
     @Override
     public void deleteById(String s)
-    {
-        throw new UnsupportedOperationException("Not implemented yet!..");
-    }
-
-    @Override
-    public Iterable<UserInfo> findAll()
     {
         throw new UnsupportedOperationException("Not implemented yet!..");
     }

@@ -6,7 +6,9 @@ import org.csystem.generator.password.repository.IUserInfoRepository;
 import org.springframework.boot.autoconfigure.security.SecurityProperties;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.StreamSupport;
 
 @Component
 @Slf4j
@@ -25,6 +27,20 @@ public class PasswordGeneratorHelper {
         return m_userInfoRepository.saveIfNotExist(userInfo);
     }
 
+    public List<String> findAlLUserNames()
+    {
+        log.info("PasswordGeneratorHelper.findAllUserNames: ");
+
+        return StreamSupport.stream(m_userInfoRepository.findAll().spliterator(), false)
+                .map(UserInfo::getUsername).toList();
+    }
+
+    public List<UserInfo> findAlLUsers()
+    {
+        log.info("PasswordGeneratorHelper.findAllUsers: ");
+
+        return StreamSupport.stream(m_userInfoRepository.findAll().spliterator(), false).toList();
+    }
     //... Facade Pattern
 
 }

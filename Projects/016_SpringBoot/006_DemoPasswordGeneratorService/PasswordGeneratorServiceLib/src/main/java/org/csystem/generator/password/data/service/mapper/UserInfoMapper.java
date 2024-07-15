@@ -4,17 +4,18 @@ import org.csystem.generator.password.data.service.dto.UserInfoSaveDTO;
 import org.csystem.generator.password.entity.UserInfo;
 import org.springframework.stereotype.Component;
 
-import java.time.LocalDateTime;
-
 @Component
 public class UserInfoMapper implements IUserInfoMapper{
     @Override
     public UserInfo toUserInfo(UserInfoSaveDTO userInfoSaveDTO)
     {
-        return new UserInfo(userInfoSaveDTO.getUsername(),
-                userInfoSaveDTO.getPassword(),
-                userInfoSaveDTO.getTextCount(),
-                userInfoSaveDTO.getTextLength(),
-                LocalDateTime.now());
+        var userInfo = new UserInfo();
+
+        userInfo.setUsername(userInfoSaveDTO.getUsername());
+        userInfo.setPassword(userInfoSaveDTO.getPassword());
+        userInfo.setCount(userInfoSaveDTO.getTextCount());
+        userInfo.setLength(userInfoSaveDTO.getTextLength());
+
+        return userInfo;
     }
 }

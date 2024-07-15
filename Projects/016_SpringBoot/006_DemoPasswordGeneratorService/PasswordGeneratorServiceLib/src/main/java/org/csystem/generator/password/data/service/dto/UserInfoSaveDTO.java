@@ -22,5 +22,5 @@ public class UserInfoSaveDTO {
     private int m_textCount;
 
     @Accessors(prefix = "m_")
-      private int m_textLength;
+    private int m_textLength;
 }

@@ -5,7 +5,7 @@ import lombok.experimental.Accessors;
 
 @Getter
 @Setter
-@EqualsAndHashCode
+@EqualsAndHashCode(exclude = "m_name")
 @ToString
 @AllArgsConstructor
 public class City {
@@ -14,5 +14,4 @@ public class City {
 
     @Accessors(prefix = "m_")
     private String m_name;
-
 }

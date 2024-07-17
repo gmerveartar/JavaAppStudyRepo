@@ -5,20 +5,21 @@ import org.csystem.app.flight.data.entity.City;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.stereotype.Repository;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Optional;
+import java.util.*;
 
 @Repository
 @Lazy
 public class CityRepository implements ICityRepository {
     private static final String SAVE_SQL = "INSERT INTO cities (name) VALUES(:name)";
-    private static final String FIND_BY_ID_SQL = "SELECT * FROM cities WHERE id = :id";
     private static final String FIND_ALL_SQL = "SELECT * FROM cities";
+    private static final String FIND_BY_ID_SQL = "SELECT * FROM cities WHERE city_id = :id";
+    private static final String FIND_BY_NAME_SQL = "SELECT * FROM cities WHERE name = :name";
+
 
     private final NamedParameterJdbcTemplate m_namedParameterJdbcTemplate;
 
@@ -36,6 +37,20 @@ public class CityRepository implements ICityRepository {
     {
         m_namedParameterJdbcTemplate = namedParameterJdbcTemplate;
     }
+
+    @Override
+    public Iterable<City> findByName(String name)
+    {
+        var cities = new ArrayList<City>();
+        var parameterMap = new HashMap<String, Object>();
+
+        parameterMap.put("name", name);
+
+        m_namedParameterJdbcTemplate.query(FIND_BY_NAME_SQL, parameterMap, (ResultSet rs) -> fillCities(cities, rs));
+
+        return cities;
+    }
+
 
     @Override
     public Iterable<City> findAll()
@@ -66,8 +81,11 @@ public class CityRepository implements ICityRepository {
     public <S extends City> S save(S city)
     {
         var parameterSource = new BeanPropertySqlParameterSource(city);
+        var keyHolder = new GeneratedKeyHolder();
 
-        m_namedParameterJdbcTemplate.update(SAVE_SQL, parameterSource);
+        m_namedParameterJdbcTemplate.update(SAVE_SQL, parameterSource, keyHolder);
+
+        city.setId((long)keyHolder.getKeys().get("city_id"));
 
         return city;
     }

@@ -21,6 +21,30 @@ public class AirportRepository implements  IAirportRepository {
         m_namedParameterJdbcTemplate = namedParameterJdbcTemplate;
     }
 
+    @Override
+    public Iterable<Airport> findAllById(Iterable<Integer> integers)
+    {
+        throw new UnsupportedOperationException("TODO");
+    }
+
+    @Override
+    public Iterable<Airport> findByCityId(long cityId)
+    {
+        throw new UnsupportedOperationException("TODO");
+    }
+
+    @Override
+    public Iterable<Airport> findByNameContains(String text)
+    {
+        throw new UnsupportedOperationException("TODO");
+    }
+
+    @Override
+    public <S extends Airport> S save(S entity)
+    {
+        throw new UnsupportedOperationException("TODO");
+    }
+
     //////////////////////////////////////////
     @Override
     public long count()
@@ -71,19 +95,7 @@ public class AirportRepository implements  IAirportRepository {
     }
 
     @Override
-    public Iterable<Airport> findAllById(Iterable<Integer> integers)
-    {
-        throw new UnsupportedOperationException("Not implemented yet!.. ");
-    }
-
-    @Override
     public Optional<Airport> findById(Integer integer)
-    {
-        throw new UnsupportedOperationException("Not implemented yet!.. ");
-    }
-
-    @Override
-    public <S extends Airport> S save(S entity)
     {
         throw new UnsupportedOperationException("Not implemented yet!.. ");
     }

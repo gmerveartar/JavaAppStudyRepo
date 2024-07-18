@@ -1,25 +1,24 @@
 package org.csystem.app.flight.data.repository;
 
-import lombok.extern.slf4j.Slf4j;
 import org.csystem.app.flight.data.entity.City;
 import org.springframework.context.annotation.Lazy;
-import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
-import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.stereotype.Repository;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Optional;
 
 @Repository
 @Lazy
 public class CityRepository implements ICityRepository {
-    private static final String SAVE_SQL = "INSERT INTO cities (name) VALUES(:name)";
-    private static final String FIND_ALL_SQL = "SELECT * FROM cities";
-    private static final String FIND_BY_ID_SQL = "SELECT * FROM cities WHERE city_id = :id";
-    private static final String FIND_BY_NAME_SQL = "SELECT * FROM cities WHERE name = :name";
-
+    private static final String DELETE_BY_ID_SQL = "CALL sp_delete_city_by_id(:id)";
+    private static final String FIND_ALL_SQL = "SELECT * FROM find_all_cities()";
+    private static final String FIND_BY_ID_SQL = "SELECT * FROM find_city_by_id(:id)";
+    private static final String FIND_BY_NAME_SQL = "SELECT * FROM find_city_by_name(:name)";
+    private static final String SAVE_SQL = "SELECT * FROM insert_city(:name)";
 
     private final NamedParameterJdbcTemplate m_namedParameterJdbcTemplate;
 
@@ -36,6 +35,22 @@ public class CityRepository implements ICityRepository {
     public CityRepository(NamedParameterJdbcTemplate namedParameterJdbcTemplate)
     {
         m_namedParameterJdbcTemplate = namedParameterJdbcTemplate;
+    }
+
+    @Override
+    public void deleteById(Long id)
+    {
+        var paramaterMap = new HashMap<String, Object>();
+
+        paramaterMap.put("id", id);
+
+        m_namedParameterJdbcTemplate.update(DELETE_BY_ID_SQL, paramaterMap);
+    }
+
+    @Override
+    public boolean existsById(Long id)
+    {
+        throw new UnsupportedOperationException("Not implemented yet!.. ");
     }
 
     @Override
@@ -80,15 +95,14 @@ public class CityRepository implements ICityRepository {
     @Override
     public <S extends City> S save(S city)
     {
-        var parameterSource = new BeanPropertySqlParameterSource(city);
-        var keyHolder = new GeneratedKeyHolder();
+        var parameterMap = new HashMap<String, Object>();
 
-        m_namedParameterJdbcTemplate.update(SAVE_SQL, parameterSource, keyHolder);
-
-        city.setId((long)keyHolder.getKeys().get("city_id"));
+        parameterMap.put("name", city.getName());
+        m_namedParameterJdbcTemplate.query(SAVE_SQL, parameterMap, (ResultSet rs) -> city.setId(rs.getLong(1)));
 
         return city;
     }
+
 
     //////////////////////////////////////////////////////////////
 
@@ -118,18 +132,6 @@ public class CityRepository implements ICityRepository {
 
     @Override
     public void deleteAllById(Iterable<? extends Long> ids)
-    {
-        throw new UnsupportedOperationException("Not implemented yet!.. ");
-    }
-
-    @Override
-    public void deleteById(Long id)
-    {
-        throw new UnsupportedOperationException("Not implemented yet!.. ");
-    }
-
-    @Override
-    public boolean existsById(Long id)
     {
         throw new UnsupportedOperationException("Not implemented yet!.. ");
     }

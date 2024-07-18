@@ -8,8 +8,8 @@ import org.springframework.stereotype.Component;
 @Getter
 @Setter
 @EqualsAndHashCode
-@AllArgsConstructor
 @ToString
+@NoArgsConstructor
 public class CitySaveDTO {
     @Accessors(prefix = "m_")
     private String m_name;

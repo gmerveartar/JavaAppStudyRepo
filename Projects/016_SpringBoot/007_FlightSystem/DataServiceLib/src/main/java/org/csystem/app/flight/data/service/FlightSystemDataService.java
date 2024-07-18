@@ -27,24 +27,9 @@ public class FlightSystemDataService {
         m_mapperInject = mapperInject;
     }
 
-    public CitySaveDTO saveCity(CitySaveDTO citySaveDTO)
+    public void deleteCityById(long id)
     {
-        try {
-            log.info("FlightSystemDataService.saveCity: City -> {}", citySaveDTO.toString());
-
-            m_flightSystemDataHelper.saveCity(m_mapperInject.getCityMapper().toCity(citySaveDTO));
-            return citySaveDTO;
-        }
-        catch (RepositoryException ex) {
-            log.error("FlightSystemDataService.saveCity: City -> {},  Exception -> Repository Exception, Message -> {}",
-                    citySaveDTO.toString(), ex.getMessage());
-            throw new DataServiceException("FlightSystemDataService.saveCity -> Repository Exception", ex);
-        }
-        catch (Throwable ex) {
-            log.error("FlightSystemDataService.saveCity: City -> {},  Exception -> {}, Message -> {}",
-                    citySaveDTO.toString(), ex.getClass().getSimpleName(), ex.getMessage());
-            throw new DataServiceException("FlightSystemDataService.saveCity -> Exception", ex);
-        }
+        throw new UnsupportedOperationException("Not implemented yet!..");
     }
 
     public Iterable<CityDTO> findAllCities()
@@ -78,6 +63,44 @@ public class FlightSystemDataService {
         catch (Throwable ex) {
             log.error("FlightSystemDataService.findCityById: Exception -> {}, Message -> {}", ex.getClass().getSimpleName(), ex.getMessage());
             throw new DataServiceException("FlightSystemDataService.findCityById -> Exception", ex);
+        }
+    }
+
+    public Iterable<CityDTO> findCityByName(String name)
+    {
+        try {
+            log.info("FlightSystemDataService.findCityByName");
+
+            throw new UnsupportedOperationException("Not implemented yet!..");
+        }
+        catch (RepositoryException ex) {
+            log.error("FlightSystemDataService.findCityByName: Exception -> Repository Exception, Message -> {}", ex.getMessage());
+            throw new DataServiceException("FlightSystemDataService.findCityByName -> Repository Exception", ex);
+        }
+        catch (Throwable ex) {
+            log.error("FlightSystemDataService.findCityByName: Exception -> {}, Message -> {}", ex.getClass().getSimpleName(), ex.getMessage());
+            throw new DataServiceException("FlightSystemDataService.findCityByName -> Exception", ex);
+        }
+    }
+
+
+    public CitySaveDTO saveCity(CitySaveDTO citySaveDTO)
+    {
+        try {
+            log.info("FlightSystemDataService.saveCity: City -> {}", citySaveDTO.toString());
+
+            m_flightSystemDataHelper.saveCity(m_mapperInject.getCityMapper().toCity(citySaveDTO));
+            return citySaveDTO;
+        }
+        catch (RepositoryException ex) {
+            log.error("FlightSystemDataService.saveCity: City -> {},  Exception -> Repository Exception, Message -> {}",
+                    citySaveDTO.toString(), ex.getMessage());
+            throw new DataServiceException("FlightSystemDataService.saveCity -> Repository Exception", ex);
+        }
+        catch (Throwable ex) {
+            log.error("FlightSystemDataService.saveCity: City -> {},  Exception -> {}, Message -> {}",
+                    citySaveDTO.toString(), ex.getClass().getSimpleName(), ex.getMessage());
+            throw new DataServiceException("FlightSystemDataService.saveCity -> Exception", ex);
         }
     }
 }

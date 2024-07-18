@@ -3,12 +3,13 @@ package org.csystem.app.flight.service.city.controller;
 import lombok.extern.slf4j.Slf4j;
 import org.csystem.app.flight.data.service.FlightSystemDataService;
 import org.csystem.app.flight.data.service.dto.CitySaveDTO;
+import org.csystem.app.flight.data.service.dto.CityUpdateDTO;
 import org.csystem.app.flight.service.city.error.CityError;
 import org.csystem.data.exception.service.DataServiceException;
 import org.springframework.context.annotation.ComponentScan;
-import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;import org.springframework.web.bind.annotation.*;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/csd/system/flight/city")
@@ -39,18 +40,37 @@ public class CityController {
         }
     }
 
+    @DeleteMapping("delete/{id}")
+    public ResponseEntity<Object> deleteById(@PathVariable("id") long id)
+    {
+        log.info("CityController.deleteById -> Id : {}", id);
+        throw new UnsupportedOperationException("TODO");
+    }
+
     @GetMapping("find")
     public ResponseEntity<Object> findByName(@RequestParam String name)
     {
-        log.info("Name: {}", name);
+        log.info("CityController.findByName  -> Name: {}", name);
         throw new UnsupportedOperationException("TODO");
     }
 
     @GetMapping("find/{id}")
     public ResponseEntity<Object> findById(@PathVariable("id") long id)
     {
-        log.info("Id: {}", id);
+        log.info("CityController.findById -> Id: {}", id);
         throw new UnsupportedOperationException("TODO");
     }
 
+    @GetMapping("find/all")
+    public ResponseEntity<Object> findAll()
+    {
+        throw new UnsupportedOperationException("TODO");
+    }
+
+    @PutMapping("update")
+    public ResponseEntity<Object> update(@RequestBody CityUpdateDTO cityUpdateDTO)
+    {
+        log.info("CityController.update -> City : {}", cityUpdateDTO.toString());
+        throw new UnsupportedOperationException("TODO");
+    }
 }

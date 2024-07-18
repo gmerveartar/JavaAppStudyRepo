@@ -68,6 +68,19 @@ public class FlightSystemDataHelper {
             throw new RepositoryException("FlightSystemDataHelper.saveCity", ex);
         }
     }
+    ////////////////////// Bunu Berkay ile yazacağız /////////////////
+    public City updateCity(City city)
+    {
+        try {
+            log.info("FlightSystemDataHelper.updateCity: city -> {}", city.toString());
 
-
+            return m_cityRepository.updateCity(city);
+        }
+        catch (Throwable ex) {
+            log.error("FlightSystemDataHelper.updateCity: city -> {}, Exception -> {}, Message : {}", city.toString(),
+                    ex.getClass().getSimpleName(), ex.getMessage());
+            throw new RepositoryException("FlightSystemDataHelper.updateCity", ex);
+        }
+    }
+    ////////////////////// Bunu Berkay ile yazacağız /////////////////
 }

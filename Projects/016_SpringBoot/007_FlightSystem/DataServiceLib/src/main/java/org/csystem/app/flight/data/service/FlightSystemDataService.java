@@ -6,6 +6,7 @@ import org.csystem.app.flight.data.entity.City;
 import org.csystem.app.flight.data.repository.CityRepository;
 import org.csystem.app.flight.data.service.dto.CityDTO;
 import org.csystem.app.flight.data.service.dto.CitySaveDTO;
+import org.csystem.app.flight.data.service.dto.CityUpdateDTO;
 import org.csystem.app.flight.data.service.mapper.MapperInject;
 import org.csystem.data.exception.repository.RepositoryException;
 import org.csystem.data.exception.service.DataServiceException;
@@ -101,6 +102,26 @@ public class FlightSystemDataService {
             log.error("FlightSystemDataService.saveCity: City -> {},  Exception -> {}, Message -> {}",
                     citySaveDTO.toString(), ex.getClass().getSimpleName(), ex.getMessage());
             throw new DataServiceException("FlightSystemDataService.saveCity -> Exception", ex);
+        }
+    }
+
+    public CityUpdateDTO updateCity(CityUpdateDTO cityUpdateDTO)
+    {
+        try {
+            log.info("FlightSystemDataService.updateCity: City -> {}", cityUpdateDTO.toString());
+
+            m_flightSystemDataHelper.updateCity(m_mapperInject.getCityMapper().toCity(cityUpdateDTO));
+            return cityUpdateDTO;
+        }
+        catch (RepositoryException ex) {
+            log.error("FlightSystemDataService.updateCity: City -> {},  Exception -> Repository Exception, Message -> {}",
+                    cityUpdateDTO.toString(), ex.getMessage());
+            throw new DataServiceException("FlightSystemDataService.updateCity -> Repository Exception", ex);
+        }
+        catch (Throwable ex) {
+            log.error("FlightSystemDataService.updateCity: City -> {},  Exception -> {}, Message -> {}",
+                    cityUpdateDTO.toString(), ex.getClass().getSimpleName(), ex.getMessage());
+            throw new DataServiceException("FlightSystemDataService.updateCity -> Exception", ex);
         }
     }
 }

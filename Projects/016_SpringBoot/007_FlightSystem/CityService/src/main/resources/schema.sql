@@ -33,6 +33,17 @@ AS
     END
 ';
 
+DROP PROCEDURE IF EXISTS sp_update_city;
+
+CREATE or REPLACE PROCEDURE sp_update_city(bigint, varchar(250))
+LANGUAGE plpgsql
+AS
+'
+    BEGIN
+        UPDATE cities set name = $2 where city_id = $1;
+    END
+';
+
 DROP FUNCTION IF EXISTS find_city_by_name;
 
 CREATE or REPLACE FUNCTION find_city_by_name(varchar(250))

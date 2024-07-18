@@ -19,6 +19,8 @@ public class CityRepository implements ICityRepository {
     private static final String FIND_BY_ID_SQL = "SELECT * FROM find_city_by_id(:id)";
     private static final String FIND_BY_NAME_SQL = "SELECT * FROM find_city_by_name(:name)";
     private static final String SAVE_SQL = "SELECT * FROM insert_city(:name)";
+    private static final String UPDATE_SQL = "CALL sp_update_city(:id, :name)";
+
 
     private final NamedParameterJdbcTemplate m_namedParameterJdbcTemplate;
 
@@ -103,8 +105,15 @@ public class CityRepository implements ICityRepository {
         return city;
     }
 
+    ////////////////////// Bunu Berkay ile yazacağız /////////////////
+    @Override
+    public City updateCity(City city)
+    {
+        throw new UnsupportedOperationException("Not implemented yet!.. ");
+    }
+    ////////////////////// Bunu Berkay ile yazacağız ////////////////
 
-    //////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////
 
     @Override
     public long count()

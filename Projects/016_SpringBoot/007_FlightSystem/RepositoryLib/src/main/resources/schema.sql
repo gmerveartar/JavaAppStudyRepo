@@ -6,7 +6,9 @@ CREATE table if not exists cities (
 CREATE table if not exists airports (
 	airport_id bigserial primary key,
 	name varchar(250) not null,
-	city_id bigint references cities(city_id) not null
+	city_id bigint references cities(city_id) not null,
+	open_date date not null,
+	register_date_time timestamp default(current_timestamp) not null
 );
 
 CREATE table if not exists flights (
@@ -86,5 +88,16 @@ AS
     BEGIN
        INSERT INTO cities (name) VALUES ($1);
        RETURN currval($$cities_city_id_seq$$::regclass);
+    END
+' LANGUAGE plpgsql;
+
+drop function if exists find_airport_by_cityId;
+
+CREATE or REPLACE FUNCTION find_airport_by_cityId(bigint)
+RETURNS TABLE (id bigint, airportName varchar(250), cityId bigint, openDate date, registerDateTime timestamp)
+AS
+'
+    BEGIN
+        RETURN QUERY SELECT * FROM airports WHERE city_id = $1;
     END
 ' LANGUAGE plpgsql;

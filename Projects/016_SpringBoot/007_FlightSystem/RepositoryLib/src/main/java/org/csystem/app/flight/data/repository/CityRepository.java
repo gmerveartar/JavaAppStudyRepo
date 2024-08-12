@@ -109,7 +109,14 @@ public class CityRepository implements ICityRepository {
     @Override
     public City updateCity(City city)
     {
-        throw new UnsupportedOperationException("Not implemented yet!.. ");
+        var paramMap = new HashMap<String, Object>();
+
+        paramMap.put("id", city.getId());
+        paramMap.put("name", city.getName());
+
+        m_namedParameterJdbcTemplate.update(UPDATE_SQL, paramMap);
+
+        return city;
     }
     ////////////////////// Bunu Berkay ile yazacağız ////////////////
 

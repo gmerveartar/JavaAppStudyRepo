@@ -2,12 +2,10 @@ package org.csystem.app.flight.data.dal;
 
 import lombok.extern.slf4j.Slf4j;
 import org.csystem.app.flight.data.entity.City;
-import org.csystem.app.flight.data.repository.CityRepository;
 import org.csystem.app.flight.data.repository.IAirportRepository;
 import org.csystem.app.flight.data.repository.ICityRepository;
 import org.csystem.app.flight.data.repository.IFlightRepository;
 import org.csystem.data.exception.repository.RepositoryException;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
@@ -68,7 +66,7 @@ public class FlightSystemDataHelper {
             throw new RepositoryException("FlightSystemDataHelper.saveCity", ex);
         }
     }
-    ////////////////////// Bunu Berkay ile yazacağız /////////////////
+
     public City updateCity(City city)
     {
         try {
@@ -82,5 +80,4 @@ public class FlightSystemDataHelper {
             throw new RepositoryException("FlightSystemDataHelper.updateCity", ex);
         }
     }
-    ////////////////////// Bunu Berkay ile yazacağız /////////////////
 }

@@ -1,14 +1,15 @@
 package org.csystem.app.flight.data.entity;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 import lombok.experimental.Accessors;
+
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Getter
 @Setter
 @EqualsAndHashCode
 @ToString
+@AllArgsConstructor
 public class Airport {
     @Accessors(prefix = "m_")
     private long m_id;
@@ -18,4 +19,11 @@ public class Airport {
 
     @Accessors(prefix = "m_")
     private long m_cityId;
+
+    @Accessors(prefix = "m_")
+    private LocalDate m_openDate;
+
+    @Accessors(prefix = "m_")
+    private LocalDateTime m_registerDateTime;
+
 }

@@ -6,7 +6,9 @@ CREATE table if not exists cities (
 CREATE table if not exists airports (
 	airport_id bigserial primary key,
 	name varchar(250) not null,
-	city_id bigint references cities(city_id) not null
+	city_id bigint references cities(city_id) not null,
+	open_date date not null,
+	register_date_time timestamp default(current_timestamp) not null
 );
 
 CREATE table if not exists flights (

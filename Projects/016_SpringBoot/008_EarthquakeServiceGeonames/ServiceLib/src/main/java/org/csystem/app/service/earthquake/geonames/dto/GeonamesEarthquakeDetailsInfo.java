@@ -1,8 +1,19 @@
 package org.csystem.app.service.earthquake.geonames.dto;
 
-import java.util.List;
+import com.fasterxml.jackson.annotation.JsonInclude;
 
 public class GeonamesEarthquakeDetailsInfo {
-    public List<GeonamesEarthquakeDetails> earthquakes;
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    public String datetime;
+    @JsonInclude(JsonInclude.Include.NON_DEFAULT)
+    public double depth;
+    @JsonInclude(JsonInclude.Include.NON_DEFAULT)
+    public double latitude;
+    @JsonInclude(JsonInclude.Include.NON_DEFAULT)
+    public double longitude;
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    public String earthquakeId;
+    @JsonInclude(JsonInclude.Include.NON_DEFAULT)
+    public double magnitude;
 
 }

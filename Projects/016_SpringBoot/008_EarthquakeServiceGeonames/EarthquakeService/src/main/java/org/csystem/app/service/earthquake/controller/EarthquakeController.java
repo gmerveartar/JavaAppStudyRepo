@@ -1,6 +1,7 @@
 package org.csystem.app.service.earthquake.controller;
 
 import org.csystem.app.service.earthquake.geonames.dto.GeonamesEarthquakeDetailsInfo;
+import org.csystem.app.service.earthquake.geonames.dto.GeonamesEarthquakeInfoDetails;
 import org.csystem.app.service.earthquake.geonames.service.GeonamesEarthquakeService;
 import org.springframework.context.annotation.Scope;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,11 +21,11 @@ public class EarthquakeController {
     }
 
     @GetMapping("/json")
-    public GeonamesEarthquakeDetailsInfo findEarthquakeJson(@RequestParam double north,
+    public GeonamesEarthquakeInfoDetails findEarthquakeJson(@RequestParam double north,
                                                             @RequestParam double south,
                                                             @RequestParam double east,
                                                             @RequestParam double west)
     {
-       return m_earthquakeService.findEarthquakesDetails(north, south, east, west);
+        return m_earthquakeService.findEarthquakesDetails(north, south, east, west);
     }
 }

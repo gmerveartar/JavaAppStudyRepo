@@ -1,5 +1,7 @@
 package org.csystem.app.service.earthquake.geonames.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class GeonamesEarthquake {
     public String datetime;
     public double depth;

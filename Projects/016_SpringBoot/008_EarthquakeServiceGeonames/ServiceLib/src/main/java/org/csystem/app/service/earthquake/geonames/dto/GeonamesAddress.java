@@ -1,6 +1,6 @@
 package org.csystem.app.service.earthquake.geonames.dto;
 
-public class GeonamesAdress {
+public class GeonamesAddress {
     public String adminCode2;
     public String sourceId;
     public String adminCode3;

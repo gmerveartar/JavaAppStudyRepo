@@ -1,4 +1,4 @@
-package org.csystem.app.postalcode.entity;
+package org.csystem.app.postalcode.data.entity;
 
 import jakarta.persistence.*;
 import lombok.EqualsAndHashCode;
@@ -13,12 +13,15 @@ import java.util.Set;
 @Table(name = "postal_codes")
 public class PostalCode {       //POJO (Plain Old Java Object)
     @Id
-    @Column(name = "postal_code_id")
-    public long postalCode;
+    @Column(name = "postal_code_id", length = 128)
+    public String postalCode;
 
-    @Column(name = "first_query_datetime", nullable = false)
+    @Column(nullable = false)
     public LocalDateTime firstQueryDateTime = LocalDateTime.now();
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "postalCode", cascade = CascadeType.ALL)
     public Set<PostalCodeInfo> postalCodeInfo;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "postalCode", cascade =  CascadeType.ALL)
+    public Set<PostalCodeQueryInfo> postalCodeQueryInfo;
 }
